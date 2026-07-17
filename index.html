@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Bliss Escola de Dança — aulas presenciais de dança de salão em Belo Horizonte. Forró, samba, salsa, bolero, soltinho, bachata, kizomba e tango." />
+  <meta name="theme-color" content="#6C3EB8" />
+  <title>Bliss Escola de Dança | Dança de Salão em Belo Horizonte</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --yellow:#F5C400;
+      --purple:#6C3EB8;
+      --purple-dark:#432078;
+      --turquoise:#16B6C9;
+      --coral:#F05A7E;
+      --white:#FFFFFF;
+      --ink:#28272D;
+      --muted:#696772;
+      --soft:#F7F7FA;
+      --line:#E8E7EC;
+      --shadow:0 18px 50px rgba(34, 24, 54, .10);
+      --radius:28px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:92px}
+    body{margin:0;background:#fff;color:var(--ink);font-family:"DM Sans",Arial,sans-serif;line-height:1.6;overflow-x:hidden}
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .container{width:min(1180px,calc(100% - 40px));margin-inline:auto}
+    .section{padding:96px 0;position:relative}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--purple);margin-bottom:14px}
+    .eyebrow::before{content:"";width:26px;height:3px;border-radius:10px;background:currentColor}
+    h1,h2,h3,p{margin-top:0}
+    h1,h2{letter-spacing:-.04em;line-height:1.06}
+    h1{font-size:clamp(3rem,6vw,5.8rem);margin-bottom:22px}
+    h2{font-size:clamp(2.2rem,4.3vw,4rem);margin-bottom:20px}
+    h3{font-size:1.25rem;line-height:1.25}
+    .script{font-family:"Playfair Display",Georgia,serif;font-style:italic;font-weight:700}
+    .lead{font-size:clamp(1.05rem,1.5vw,1.25rem);color:var(--muted);max-width:690px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border-radius:999px;font-weight:800;border:2px solid transparent;transition:.25s ease;cursor:pointer}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(48,30,80,.16)}
+    .btn-primary{background:var(--purple);color:#fff}
+    .btn-primary:hover{background:var(--purple-dark)}
+    .btn-coral{background:var(--coral);color:#fff}
+    .btn-outline{border-color:var(--purple);color:var(--purple);background:#fff}
+    .btn-white{background:#fff;color:var(--purple)}
+    .btn-arrow::after{content:"→";font-size:1.15em}
+
+    /* Header */
+    .site-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(18px);border-bottom:1px solid rgba(232,231,236,.8)}
+    .nav{height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand img{width:196px;height:auto}
+    .nav-links{display:flex;align-items:center;gap:25px;font-size:.88rem;font-weight:700}
+    .nav-links a{position:relative}
+    .nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:-9px;height:3px;background:var(--purple);border-radius:9px;transition:.22s}
+    .nav-links a:hover::after{right:0}
+    .nav-cta{min-height:44px;padding-inline:18px}
+    .menu-toggle{display:none;background:none;border:0;width:44px;height:44px;border-radius:12px;color:var(--ink);font-size:1.5rem}
+
+    /* Hero */
+    .hero{padding:76px 0 56px;min-height:760px;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(145deg,#fff 0%,#fff 57%,#f8f4ff 100%)}
+    .hero::before{content:"";position:absolute;width:360px;height:360px;border-radius:50%;background:rgba(22,182,201,.10);left:-190px;top:40px}
+    .hero::after{content:"";position:absolute;width:280px;height:280px;border:54px solid rgba(245,196,0,.16);border-radius:50%;right:-165px;bottom:-85px}
+    .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:54px;align-items:center;position:relative;z-index:2}
+    .hero h1 span{color:var(--purple)}
+    .hero-copy .lead{max-width:590px;margin-bottom:30px}
+    .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:35px}
+    .quick-points{display:flex;flex-wrap:wrap;gap:12px}
+    .quick-point{display:flex;align-items:center;gap:9px;padding:10px 13px;background:#fff;border:1px solid var(--line);border-radius:14px;font-size:.88rem;font-weight:700;box-shadow:0 8px 28px rgba(34,24,54,.05)}
+    .quick-icon{width:28px;height:28px;border-radius:10px;display:grid;place-items:center;color:#fff;font-size:.83rem}
+    .hero-art{position:relative;height:575px;display:grid;place-items:center}
+    .hero-blob{position:absolute;inset:24px 0 10px 42px;border-radius:48% 52% 45% 55% / 56% 41% 59% 44%;background:linear-gradient(145deg,#7b49c9 0%,#552392 58%,#3d176d 100%);box-shadow:0 36px 90px rgba(83,35,145,.30);overflow:hidden}
+    .hero-blob::before{content:"";position:absolute;width:310px;height:310px;background:radial-gradient(circle,rgba(255,255,255,.50),rgba(255,255,255,0) 68%);top:-100px;right:-20px}
+    .hero-blob::after{content:"";position:absolute;inset:0;background-image:url('assets/marca-dagua-bliss.png');background-size:cover;background-position:center;opacity:.55}
+    .hero-symbol{position:relative;z-index:2;width:68%;filter:invert(1);opacity:.95;transform:rotate(-3deg)}
+    .float-tag{position:absolute;z-index:3;padding:12px 18px;border-radius:999px;background:#fff;font-weight:800;box-shadow:var(--shadow);font-size:.9rem}
+    .tag-forro{left:6px;top:90px;color:var(--coral)}
+    .tag-tango{right:-8px;top:145px;color:var(--purple)}
+    .tag-samba{right:40px;bottom:58px;color:#008b9b}
+    .hero-dot{position:absolute;z-index:4;width:76px;height:76px;border-radius:22px;background:var(--yellow);right:24px;top:20px;transform:rotate(13deg);display:grid;place-items:center;font-size:2rem}
+    .hero-line{position:absolute;width:150px;height:150px;border:3px solid var(--coral);border-radius:50%;bottom:4px;left:30px;opacity:.85}
+
+    /* color strip */
+    .color-strip{display:grid;grid-template-columns:repeat(4,1fr);height:8px}.color-strip span:nth-child(1){background:var(--yellow)}.color-strip span:nth-child(2){background:var(--purple)}.color-strip span:nth-child(3){background:var(--turquoise)}.color-strip span:nth-child(4){background:var(--coral)}
+
+    /* About */
+    .about{background:linear-gradient(180deg,#fff6f8 0%,#fff 100%)}
+    .about-grid{display:grid;grid-template-columns:.88fr 1.12fr;gap:65px;align-items:center}
+    .about-card{background:var(--coral);color:#fff;border-radius:var(--radius);padding:44px;min-height:475px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+    .about-card::before{content:"BLISS";position:absolute;left:-12px;bottom:-52px;font-size:10rem;line-height:1;font-weight:900;letter-spacing:-.08em;color:rgba(255,255,255,.09)}
+    .about-card img{width:140px;filter:invert(1);margin-bottom:50px}
+    .about-card blockquote{margin:0;font-size:clamp(1.6rem,3vw,2.5rem);line-height:1.18;font-weight:700;letter-spacing:-.035em;position:relative;z-index:2}
+    .about-copy p{color:var(--muted);font-size:1.07rem}
+    .values{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:30px}
+    .value{padding:18px;border:1px solid #f0dfe5;border-radius:18px;background:#fff;display:flex;align-items:center;gap:13px;font-weight:800}
+    .value i{font-style:normal;width:38px;height:38px;border-radius:13px;background:#fff0f4;color:var(--coral);display:grid;place-items:center}
+
+    /* Rhythms */
+    .rhythms{background:#f4fcfd}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:42px}
+    .section-head h2{margin-bottom:0;max-width:720px}
+    .rhythm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .rhythm-card{min-height:178px;background:#fff;border:1px solid #dff3f5;border-radius:22px;padding:24px;position:relative;overflow:hidden;transition:.25s ease}
+    .rhythm-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+    .rhythm-card::after{content:attr(data-letter);position:absolute;right:-5px;bottom:-30px;font-weight:900;font-size:8.5rem;line-height:1;color:rgba(22,182,201,.09)}
+    .rhythm-number{font-size:.74rem;font-weight:800;color:var(--turquoise);letter-spacing:.1em}
+    .rhythm-card h3{font-size:1.42rem;margin:24px 0 6px}
+    .rhythm-card p{color:var(--muted);font-size:.92rem;margin:0}
+
+    /* Experience */
+    .experience-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:60px;align-items:start}
+    .connection-quote{font-family:"Playfair Display",Georgia,serif;font-size:clamp(1.9rem,3.4vw,3.1rem);line-height:1.23;margin:0;color:var(--purple-dark)}
+    .level-card{background:var(--purple);color:#fff;border-radius:var(--radius);padding:36px;position:relative;overflow:hidden}
+    .level-card::after{content:"";position:absolute;width:170px;height:170px;border:36px solid rgba(255,255,255,.09);border-radius:50%;right:-85px;bottom:-75px}
+    .levels{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0}
+    .level{padding:9px 14px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);font-weight:800}
+    .feature-list{display:grid;gap:15px;margin-top:24px}
+    .feature{display:flex;gap:14px;align-items:flex-start}
+    .feature b{display:block;margin-bottom:2px}
+    .feature span{color:rgba(255,255,255,.76);font-size:.92rem}
+    .check{flex:0 0 30px;width:30px;height:30px;border-radius:10px;background:var(--yellow);color:#222;display:grid;place-items:center;font-weight:900}
+
+    /* Schedule */
+    .schedule{background:linear-gradient(145deg,#25153c 0%,#4c237c 58%,#64339d 100%);color:#fff;overflow:hidden}
+    .schedule::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 10%,rgba(240,90,126,.28),transparent 32%),radial-gradient(circle at 10% 90%,rgba(22,182,201,.18),transparent 28%)}
+    .schedule .eyebrow{color:var(--yellow)}
+    .schedule .lead{color:rgba(255,255,255,.72)}
+    .schedule-grid{display:grid;grid-template-columns:340px 1fr;gap:44px;align-items:center;position:relative}
+    .poster-wrap{padding:12px;background:#fff;border-radius:24px;transform:rotate(-1.5deg);box-shadow:0 30px 70px rgba(0,0,0,.28)}
+    .poster-wrap img{border-radius:15px;width:100%}
+    .time-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+    .time-card{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16);border-radius:22px;padding:22px;backdrop-filter:blur(10px)}
+    .time-card h3{color:var(--yellow);font-size:1rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+    .time-slot{padding:12px 0;border-top:1px solid rgba(255,255,255,.13)}
+    .time-slot:first-of-type{border-top:0;padding-top:0}
+    .time-slot strong{display:block;font-size:1.02rem}.time-slot span{font-size:.88rem;color:rgba(255,255,255,.72)}
+    .schedule-note{margin-top:18px;font-size:.88rem;color:rgba(255,255,255,.65)}
+
+    /* Pricing */
+    .pricing{background:#fffdf5}
+    .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+    .price-card{background:#fff;border:1px solid #f0e7bf;border-radius:24px;padding:30px;position:relative;box-shadow:0 12px 34px rgba(70,57,13,.05)}
+    .price-card.featured{border:2px solid var(--yellow);transform:translateY(-10px)}
+    .popular{position:absolute;right:20px;top:18px;background:var(--yellow);color:#332b00;padding:6px 10px;border-radius:999px;font-size:.7rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em}
+    .price-label{font-size:.79rem;font-weight:900;color:#877319;text-transform:uppercase;letter-spacing:.09em}
+    .price{font-size:3rem;font-weight:900;letter-spacing:-.06em;margin:12px 0 0}.price small{font-size:.92rem;font-weight:600;color:var(--muted);letter-spacing:0}
+    .price-card p{color:var(--muted)}
+    .price-list{list-style:none;padding:0;margin:20px 0;display:grid;gap:11px}
+    .price-list li{display:flex;gap:10px}.price-list li::before{content:"✓";color:#a68600;font-weight:900}
+    .private-list{margin-top:34px;background:#fff;border-radius:24px;border:1px solid #f0e7bf;overflow:hidden}
+    .private-head{padding:24px 28px;background:var(--yellow);display:flex;justify-content:space-between;gap:20px;align-items:center}
+    .private-head h3{margin:0}.private-head p{margin:0;font-size:.9rem}
+    .private-table{display:grid;grid-template-columns:repeat(2,1fr)}
+    .private-item{padding:22px 28px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px}.private-item:nth-child(odd){border-right:1px solid var(--line)}
+    .private-item span{color:var(--muted)}.private-item strong{font-size:1.15rem;white-space:nowrap}
+
+    /* Partner explanation */
+    .partner{background:#fff}
+    .partner-box{border-radius:34px;background:linear-gradient(105deg,#eefdff 0%,#fff 52%,#fff0f4 100%);padding:54px;display:grid;grid-template-columns:1fr .8fr;gap:50px;align-items:center;border:1px solid #e9f4f5}
+    .partner-points{display:grid;gap:13px}
+    .partner-point{padding:16px 18px;background:#fff;border-radius:16px;box-shadow:0 10px 30px rgba(34,24,54,.05);display:flex;gap:12px;align-items:center;font-weight:700}
+    .partner-point i{font-style:normal;color:var(--turquoise);font-size:1.35rem}
+
+    /* Stage */
+    .stage{background:var(--coral);color:#fff;overflow:hidden}
+    .stage::before{content:"";position:absolute;width:430px;height:430px;border:78px solid rgba(255,255,255,.08);border-radius:50%;right:-210px;top:-130px}
+    .stage-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:center;position:relative}
+    .stage .eyebrow{color:#fff}.stage .lead{color:rgba(255,255,255,.84)}
+    .stage-card{background:#fff;color:var(--ink);border-radius:var(--radius);padding:36px;box-shadow:0 30px 70px rgba(100,15,42,.22)}
+    .stage-card .big-number{font-size:5rem;line-height:1;font-weight:900;color:var(--coral);letter-spacing:-.07em}
+    .stage-card p{color:var(--muted);margin-bottom:0}
+
+    /* Teachers */
+    .teachers{background:var(--soft)}
+    .teacher-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .teacher-card{background:#fff;border-radius:24px;padding:30px;text-align:center;border:1px solid var(--line);transition:.25s}
+    .teacher-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+    .avatar{width:118px;height:118px;border-radius:50%;display:grid;place-items:center;margin:0 auto 20px;font-size:2rem;font-weight:900;color:#fff;position:relative}
+    .avatar::after{content:"";position:absolute;inset:-7px;border:2px dashed currentColor;border-radius:50%;opacity:.28}
+    .avatar.purple{background:var(--purple)}.avatar.coral{background:var(--coral)}.avatar.turquoise{background:var(--turquoise)}
+    .teacher-card h3{margin-bottom:7px}.teacher-card p{color:var(--muted);margin:0}
+
+    /* Contact */
+    .contact{background:#fff}
+    .cta-box{background:linear-gradient(115deg,var(--purple) 0%,#53258c 55%,#3c1769 100%);color:#fff;border-radius:36px;padding:58px;display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;position:relative;overflow:hidden}
+    .cta-box::after{content:"";position:absolute;width:290px;height:290px;border-radius:50%;background:var(--coral);right:-190px;top:-120px;opacity:.75}
+    .cta-box h2{font-size:clamp(2.5rem,4.6vw,4.2rem)}
+    .cta-box p{color:rgba(255,255,255,.78);font-size:1.08rem}
+    .cta-actions{display:flex;flex-direction:column;gap:12px;position:relative;z-index:2}
+    .contact-card{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);border-radius:18px;padding:16px 18px;display:flex;gap:14px;align-items:center;transition:.22s}
+    .contact-card:hover{background:rgba(255,255,255,.16);transform:translateX(4px)}
+    .contact-icon{width:40px;height:40px;border-radius:13px;background:#fff;color:var(--purple);display:grid;place-items:center;font-weight:900}
+    .contact-card small{display:block;color:rgba(255,255,255,.62);font-size:.75rem}.contact-card strong{display:block}
+    .location-bar{margin-top:22px;display:flex;gap:14px;align-items:flex-start;color:rgba(255,255,255,.78)}
+
+    /* Footer */
+    footer{background:#222127;color:#fff;padding:56px 0 26px}
+    .footer-grid{display:grid;grid-template-columns:1.3fr .8fr .8fr 1fr;gap:40px}
+    .footer-logo{width:205px;filter:invert(1);margin-bottom:17px}
+    footer p,footer a{color:rgba(255,255,255,.68);font-size:.9rem}
+    footer h4{margin:0 0 15px;font-size:.82rem;text-transform:uppercase;letter-spacing:.1em}
+    .footer-links{display:grid;gap:8px}
+    .socials{display:flex;gap:10px;margin-top:20px}.socials a{width:39px;height:39px;border-radius:50%;border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;color:#fff}
+    .copyright{border-top:1px solid rgba(255,255,255,.1);margin-top:40px;padding-top:22px;display:flex;justify-content:space-between;gap:20px;font-size:.78rem;color:rgba(255,255,255,.45)}
+
+    .whatsapp-float{position:fixed;right:20px;bottom:20px;z-index:45;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:#25D366;color:#fff;font-size:1.6rem;box-shadow:0 16px 36px rgba(24,138,71,.35);transition:.2s}.whatsapp-float:hover{transform:scale(1.06)}
+
+    /* reveal */
+    .reveal{opacity:0;transform:translateY(24px);transition:.7s ease}.reveal.visible{opacity:1;transform:none}
+
+    @media (max-width: 1050px){
+      .nav-links{display:none;position:absolute;top:81px;left:0;right:0;background:#fff;padding:22px 20px 28px;flex-direction:column;align-items:flex-start;border-bottom:1px solid var(--line);box-shadow:0 20px 40px rgba(30,20,50,.1)}
+      .nav-links.open{display:flex}.menu-toggle{display:block}.desktop-cta{display:none}
+      .hero-grid,.about-grid,.experience-grid,.stage-grid,.cta-box{grid-template-columns:1fr}
+      .hero{padding-top:50px}.hero-copy{text-align:center}.hero-copy .lead{margin-inline:auto}.hero-actions,.quick-points{justify-content:center}.hero-art{height:520px;max-width:650px;width:100%;margin-inline:auto}
+      .about-card{min-height:390px}.rhythm-grid{grid-template-columns:repeat(2,1fr)}
+      .schedule-grid{grid-template-columns:285px 1fr}.time-columns{grid-template-columns:1fr}.poster-wrap{align-self:start}
+      .price-grid{grid-template-columns:1fr 1fr}.price-card:last-child{grid-column:1/-1}.price-card.featured{transform:none}
+      .partner-box{grid-template-columns:1fr}
+      .footer-grid{grid-template-columns:1fr 1fr}
+    }
+
+    @media (max-width: 760px){
+      .container{width:min(100% - 28px,1180px)}.section{padding:72px 0}.nav{height:72px}.nav-links{top:71px}.brand img{width:165px}
+      .hero{min-height:auto;padding:48px 0}.hero h1{font-size:3.3rem}.hero-grid{gap:30px}.hero-art{height:420px}.hero-blob{inset:16px 6px 10px 20px}.hero-symbol{width:66%}.float-tag{font-size:.76rem;padding:9px 12px}.tag-forro{top:62px}.tag-tango{right:0;top:118px}.tag-samba{bottom:34px}.hero-dot{width:58px;height:58px;font-size:1.5rem}
+      .about-grid{gap:30px}.about-card{padding:30px;min-height:350px}.about-card img{width:110px;margin-bottom:34px}.values{grid-template-columns:1fr}
+      .section-head{align-items:flex-start;flex-direction:column}.rhythm-grid{grid-template-columns:1fr 1fr;gap:12px}.rhythm-card{min-height:155px;padding:19px}.rhythm-card h3{font-size:1.18rem;margin-top:17px}.rhythm-card p{font-size:.84rem}
+      .schedule-grid{grid-template-columns:1fr}.poster-wrap{max-width:330px;margin-inline:auto}.time-columns{grid-template-columns:1fr}
+      .price-grid{grid-template-columns:1fr}.price-card:last-child{grid-column:auto}.private-table{grid-template-columns:1fr}.private-item:nth-child(odd){border-right:0}.private-head{align-items:flex-start;flex-direction:column}
+      .partner-box{padding:30px}.stage-grid{gap:35px}.teacher-grid{grid-template-columns:1fr}.cta-box{padding:36px 26px;gap:28px}
+      .footer-grid{grid-template-columns:1fr}.copyright{flex-direction:column}.whatsapp-float{width:52px;height:52px}
+    }
+
+    @media (max-width: 460px){
+      .hero-actions .btn{width:100%}.quick-points{display:grid;grid-template-columns:1fr 1fr}.quick-point:last-child{grid-column:1/-1}.rhythm-grid{grid-template-columns:1fr}.hero-art{height:350px}.float-tag{display:none}.hero-line{width:110px;height:110px}.price{font-size:2.55rem}
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#inicio" aria-label="Bliss Escola de Dança — início"><img src="assets/logo-horizontal.png" alt="Bliss Escola de Dança"></a>
+      <nav class="nav-links" id="navLinks" aria-label="Menu principal">
+        <a href="#sobre">A Bliss</a><a href="#ritmos">Ritmos</a><a href="#horarios">Horários</a><a href="#valores">Valores</a><a href="#professores">Professores</a><a href="#contato">Contato</a>
+      </nav>
+      <a class="btn btn-primary nav-cta desktop-cta" href="https://wa.me/5531975847108?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20aula%20experimental%20na%20Bliss." target="_blank" rel="noopener">Agendar aula</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow">Dança de salão em Belo Horizonte</div>
+          <h1>Descubra a <span class="script">felicidade</span> de dançar.</h1>
+          <p class="lead">Na Bliss, cada passo cria conexão, alegria e confiança. Aprenda dança de salão em um ambiente acolhedor, com turmas para diferentes níveis.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-arrow" href="https://wa.me/5531975847108?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20aula%20experimental%20na%20Bliss." target="_blank" rel="noopener">Agendar aula experimental</a>
+            <a class="btn btn-outline" href="#ritmos">Conhecer os ritmos</a>
+          </div>
+          <div class="quick-points">
+            <div class="quick-point"><span class="quick-icon" style="background:var(--coral)">♡</span>Não precisa levar par</div>
+            <div class="quick-point"><span class="quick-icon" style="background:var(--turquoise)">↗</span>Do iniciante ao avançado</div>
+            <div class="quick-point"><span class="quick-icon" style="background:var(--yellow);color:#332b00">★</span>Aula experimental</div>
+          </div>
+        </div>
+        <div class="hero-art reveal" aria-label="Ilustração da marca Bliss">
+          <div class="hero-blob"></div>
+          <img class="hero-symbol" src="assets/icone-bliss.png" alt="Casal dançando — símbolo da Bliss">
+          <span class="float-tag tag-forro">Forró</span><span class="float-tag tag-tango">Tango</span><span class="float-tag tag-samba">Samba</span>
+          <div class="hero-dot">♪</div><div class="hero-line"></div>
+        </div>
+      </div>
+    </section>
+    <div class="color-strip" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+
+    <section class="section about" id="sobre">
+      <div class="container about-grid">
+        <div class="about-card reveal">
+          <img src="assets/icone-bliss.png" alt="Símbolo Bliss">
+          <blockquote>“Bliss” é sinônimo de felicidade — e é essa energia que queremos fazer você levar para além da aula.</blockquote>
+        </div>
+        <div class="about-copy reveal">
+          <div class="eyebrow" style="color:var(--coral)">A essência da Bliss</div>
+          <h2>Mais que aprender passos, <span class="script" style="color:var(--coral)">viver uma experiência.</span></h2>
+          <p>A dança vai além da expressão artística. Ela também é lazer, atividade física, comunicação, socialização, criatividade, prazer e bem-estar.</p>
+          <p>Na dança de salão, condutores e conduzidos constroem juntos uma forma única de expressão, por meio da conexão, da musicalidade e dos passos.</p>
+          <div class="values">
+            <div class="value"><i>☀</i>Alegria</div><div class="value"><i>♡</i>Empatia</div><div class="value"><i>◆</i>Respeito</div><div class="value"><i>∞</i>Companheirismo</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section rhythms" id="ritmos">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><div class="eyebrow" style="color:var(--turquoise)">Movimento que conecta</div><h2>Ritmos para você se encontrar na pista.</h2></div>
+          <p class="lead">Uma formação completa em dança de salão, desenvolvendo técnica, musicalidade, condução, confiança e liberdade para dançar.</p>
+        </div>
+        <div class="rhythm-grid">
+          <article class="rhythm-card reveal" data-letter="F"><span class="rhythm-number">01</span><h3>Forró</h3><p>Energia, proximidade e tradição brasileira.</p></article>
+          <article class="rhythm-card reveal" data-letter="S"><span class="rhythm-number">02</span><h3>Samba</h3><p>Ginga, elegância e muita brasilidade.</p></article>
+          <article class="rhythm-card reveal" data-letter="S"><span class="rhythm-number">03</span><h3>Salsa</h3><p>Ritmo vibrante, presença e expressão.</p></article>
+          <article class="rhythm-card reveal" data-letter="B"><span class="rhythm-number">04</span><h3>Bolero</h3><p>Conexão, suavidade e romantismo.</p></article>
+          <article class="rhythm-card reveal" data-letter="S"><span class="rhythm-number">05</span><h3>Soltinho</h3><p>Leveza e diversão ao som de grandes hits.</p></article>
+          <article class="rhythm-card reveal" data-letter="B"><span class="rhythm-number">06</span><h3>Bachata</h3><p>Musicalidade, fluidez e conexão.</p></article>
+          <article class="rhythm-card reveal" data-letter="K"><span class="rhythm-number">07</span><h3>Kizomba</h3><p>Cadência, sensibilidade e presença.</p></article>
+          <article class="rhythm-card reveal" data-letter="T"><span class="rhythm-number">08</span><h3>Tango</h3><p>Intensidade, técnica e elegância.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section experience">
+      <div class="container experience-grid">
+        <div class="reveal">
+          <div class="eyebrow">Uma entrega singular</div>
+          <p class="connection-quote">Na dança de salão, duas pessoas buscam uma forma ímpar e indivisível de se expressar pela conexão e pelos passos.</p>
+        </div>
+        <div class="level-card reveal">
+          <h3 style="font-size:1.8rem;margin-bottom:6px">Aulas para cada momento</h3>
+          <p style="color:rgba(255,255,255,.75)">Evolua no seu ritmo, com acompanhamento próximo da equipe.</p>
+          <div class="levels"><span class="level">Iniciante</span><span class="level">Intermediário</span><span class="level">Avançado*</span></div>
+          <div class="feature-list">
+            <div class="feature"><div class="check">✓</div><div><b>Turmas presenciais</b><span>Aprendizado prático e convivência em grupo.</span></div></div>
+            <div class="feature"><div class="check">✓</div><div><b>Aulas em grupo ou particulares</b><span>Escolha a experiência que melhor combina com você.</span></div></div>
+            <div class="feature"><div class="check">✓</div><div><b>Equipe de monitores</b><span>Apoio para equilibrar os pares e enriquecer a prática.</span></div></div>
+          </div>
+          <small style="display:block;margin-top:20px;color:rgba(255,255,255,.55)">* Turmas avançadas conforme disponibilidade e formação.</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="section schedule" id="horarios">
+      <div class="container schedule-grid">
+        <div class="poster-wrap reveal"><img src="assets/horarios-oficiais.png" alt="Quadro oficial de horários da Bliss Escola de Dança"></div>
+        <div class="reveal">
+          <div class="eyebrow">Organize seus passos</div>
+          <h2>Horários das turmas</h2>
+          <p class="lead">Escolha o dia e o nível que melhor se encaixam na sua rotina.</p>
+          <div class="time-columns">
+            <div class="time-card"><h3>Segunda e quarta</h3><div class="time-slot"><strong>18h</strong><span>Dança de Salão — Iniciante</span></div><div class="time-slot"><strong>19h</strong><span>Dança de Salão — Intermediário</span></div><div class="time-slot"><strong>20h</strong><span>Tango — Intermediário</span></div></div>
+            <div class="time-card"><h3>Terça e quinta</h3><div class="time-slot"><strong>18h</strong><span>Dança de Salão — Intermediário</span></div><div class="time-slot"><strong>19h</strong><span>Dança de Salão — Iniciante</span></div><div class="time-slot"><strong>19h</strong><span>Tango — Iniciante</span></div><div class="time-slot"><strong>20h</strong><span>Samba iniciante (terça) / intermediário (quinta)</span></div></div>
+            <div class="time-card"><h3>Sábado</h3><div class="time-slot"><strong>14h</strong><span>Dança de Salão — Iniciante</span></div><div class="time-slot"><strong>15h30</strong><span>Dança de Salão — Intermediário</span></div></div>
+          </div>
+          <p class="schedule-note">Horários sujeitos à confirmação de vagas e eventuais atualizações da programação.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pricing" id="valores">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><div class="eyebrow" style="color:#9a7c00">Escolha seu plano</div><h2>Planos para colocar a dança na sua rotina.</h2></div>
+          <p class="lead">Valores mensais para aulas presenciais. Consulte a equipe para confirmar vagas e condições de matrícula.</p>
+        </div>
+        <div class="price-grid">
+          <article class="price-card featured reveal"><span class="popular">Mais completo</span><span class="price-label">Dança de salão</span><div class="price">R$ 216<small>/mês</small></div><p>Para quem quer evoluir com mais frequência.</p><ul class="price-list"><li>2 vezes por semana</li><li>ou turma aos sábados</li><li>Acompanhamento em grupo</li></ul><a class="btn btn-primary" href="https://wa.me/5531975847108?text=Ol%C3%A1%21%20Quero%20saber%20mais%20sobre%20o%20plano%20de%20R%24%20216%20da%20Bliss." target="_blank" rel="noopener">Quero este plano</a></article>
+          <article class="price-card reveal"><span class="price-label">Dança de salão</span><div class="price">R$ 125<small>/mês</small></div><p>Para começar com uma aula por semana.</p><ul class="price-list"><li>1 vez por semana</li><li>Turmas por nível</li><li>Prática com troca de pares</li></ul><a class="btn btn-outline" href="https://wa.me/5531975847108?text=Ol%C3%A1%21%20Quero%20saber%20mais%20sobre%20o%20plano%20de%20R%24%20125%20da%20Bliss." target="_blank" rel="noopener">Consultar vagas</a></article>
+          <article class="price-card reveal"><span class="price-label">Primeiro passo</span><div class="price" style="font-size:2.45rem">Aula <span style="color:var(--coral)">experimental</span></div><p>Conheça a metodologia, a equipe e o ambiente antes de escolher sua turma.</p><ul class="price-list"><li>Experiência presencial</li><li>Orientação da equipe</li><li>Agendamento por WhatsApp</li></ul><a class="btn btn-coral" href="https://wa.me/5531975847108?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20aula%20experimental%20na%20Bliss." target="_blank" rel="noopener">Agendar agora</a></article>
+        </div>
+        <div class="private-list reveal">
+          <div class="private-head"><div><h3>Aulas particulares</h3><p>Atendimento personalizado para acelerar sua evolução.</p></div><strong>Valores mensais</strong></div>
+          <div class="private-table">
+            <div class="private-item"><span>30 min · 1x por semana</span><strong>R$ 252</strong></div><div class="private-item"><span>30 min · 2x por semana</span><strong>R$ 459</strong></div>
+            <div class="private-item"><span>1 hora · 1x por semana</span><strong>R$ 459</strong></div><div class="private-item"><span>1 hora · 2x por semana</span><strong>R$ 835</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section partner">
+      <div class="container partner-box reveal">
+        <div><div class="eyebrow" style="color:var(--turquoise)">Pode vir sozinho</div><h2>Não é necessário trazer um par.</h2><p class="lead">Temos monitores para auxiliar no equilíbrio quantitativo dos pares. Para enriquecer a prática, estimulamos a troca de parceiros durante a aula.</p><p>Quem preferir também pode permanecer dançando somente com o próprio par, desde que ele não seja um monitor da turma.</p></div>
+        <div class="partner-points"><div class="partner-point"><i>✓</i>Equipe de monitores</div><div class="partner-point"><i>↻</i>Troca de pares durante a prática</div><div class="partner-point"><i>♡</i>Ambiente respeitoso e acolhedor</div><div class="partner-point"><i>♪</i>E se o par vier, melhor ainda!</div></div>
+      </div>
+    </section>
+
+    <section class="section stage">
+      <div class="container stage-grid">
+        <div class="reveal"><div class="eyebrow">Do salão ao palco</div><h2>Arte, expressão e momentos inesquecíveis.</h2><p class="lead">Ao final de cada semestre, estimulamos os alunos a conhecerem também o lado artístico da dança, com apresentações individuais e coletivas no palco do teatro.</p></div>
+        <div class="stage-card reveal"><div class="big-number">1</div><h3>experiência completa</h3><p>Aprender, praticar, socializar e compartilhar a dança com o público.</p></div>
+      </div>
+    </section>
+
+    <section class="section teachers" id="professores">
+      <div class="container">
+        <div class="section-head reveal"><div><div class="eyebrow">Quem faz a Bliss</div><h2>Professores e sócios</h2></div><p class="lead">Uma equipe dedicada a ensinar com técnica, atenção e alegria.</p></div>
+        <div class="teacher-grid">
+          <article class="teacher-card reveal"><div class="avatar purple">RD</div><h3>Rodrigo Deslandes</h3><p>Professor e sócio</p></article>
+          <article class="teacher-card reveal"><div class="avatar coral">AN</div><h3>Andrea Nepce</h3><p>Professora e sócia</p></article>
+          <article class="teacher-card reveal"><div class="avatar turquoise">CA</div><h3>Claudio Apolinario</h3><p>Professor e sócio</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contato">
+      <div class="container cta-box reveal">
+        <div><div class="eyebrow" style="color:var(--yellow)">Dê o primeiro passo</div><h2>Venha fazer uma aula <span class="script" style="color:var(--yellow)">experimental.</span></h2><p>Conheça a Bliss, encontre sua turma e descubra como a dança pode transformar a sua rotina.</p><a class="btn btn-white btn-arrow" href="https://wa.me/5531975847108?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20aula%20experimental%20na%20Bliss." target="_blank" rel="noopener">Falar com a Bliss</a><div class="location-bar"><span>⌖</span><div><strong>Rua Álvares Maciel, 59</strong><br>Santa Efigênia — Belo Horizonte/MG</div></div></div>
+        <div class="cta-actions">
+          <a class="contact-card" href="https://wa.me/5531975847108" target="_blank" rel="noopener"><span class="contact-icon">W</span><span><small>WhatsApp Bliss</small><strong>(31) 97584-7108</strong></span></a>
+          <a class="contact-card" href="https://wa.me/5531998777605" target="_blank" rel="noopener"><span class="contact-icon">W</span><span><small>WhatsApp SESI Minas</small><strong>(31) 99877-7605</strong></span></a>
+          <a class="contact-card" href="tel:+553121160418"><span class="contact-icon">☎</span><span><small>Telefone SESI Minas</small><strong>(31) 2116-0418</strong></span></a>
+          <a class="contact-card" href="mailto:sesiculturamg@fiemg.com.br"><span class="contact-icon">@</span><span><small>E-mail</small><strong>sesiculturamg@fiemg.com.br</strong></span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div><img class="footer-logo" src="assets/logo-horizontal.png" alt="Bliss Escola de Dança"><p>Felicidade, conexão e movimento em cada passo.</p><div class="socials"><a href="https://www.instagram.com/blissescoladedanca/" target="_blank" rel="noopener" aria-label="Instagram">◎</a><a href="https://wa.me/5531975847108" target="_blank" rel="noopener" aria-label="WhatsApp">W</a></div></div>
+        <div><h4>A escola</h4><div class="footer-links"><a href="#sobre">Sobre a Bliss</a><a href="#professores">Professores</a><a href="#ritmos">Ritmos</a></div></div>
+        <div><h4>Informações</h4><div class="footer-links"><a href="#horarios">Horários</a><a href="#valores">Valores</a><a href="#contato">Aula experimental</a></div></div>
+        <div><h4>Onde estamos</h4><p>Rua Álvares Maciel, 59<br>Santa Efigênia<br>Belo Horizonte — MG</p></div>
+      </div>
+      <div class="copyright"><span>© <span id="year"></span> Bliss Escola de Dança. Todos os direitos reservados.</span><span>Site desenvolvido com movimento e alegria.</span></div>
+    </div>
+  </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/5531975847108?text=Ol%C3%A1%21%20Gostaria%20de%20conhecer%20a%20Bliss." target="_blank" rel="noopener" aria-label="Fale com a Bliss pelo WhatsApp">W</a>
+
+  <script>
+    const menuToggle=document.getElementById('menuToggle');
+    const navLinks=document.getElementById('navLinks');
+    menuToggle.addEventListener('click',()=>{const open=navLinks.classList.toggle('open');menuToggle.setAttribute('aria-expanded',open);menuToggle.textContent=open?'×':'☰'});
+    navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');menuToggle.textContent='☰'}));
+    document.getElementById('year').textContent=new Date().getFullYear();
+    const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.11});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+  </script>
+</body>
+</html>
