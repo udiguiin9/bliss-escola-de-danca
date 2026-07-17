@@ -1,10 +1,8 @@
-BLISS ESCOLA DE DANÇA — SITE V1
+BLISS ESCOLA DE DANÇA — SITE V2
 
-Abra o arquivo index.html no navegador.
+Arquivos principais:
+- index.html: página inicial atualizada
+- assets/: logotipos e imagens da marca
+- ritmos/: páginas individuais de Forró, Bolero, Samba, Salsa, Tango, Soltinho, Bachata e Kizomba
 
-Estrutura:
-- index.html: página principal
-- assets/: logotipos, símbolo e quadro de horários
-
-Contatos e valores foram preenchidos com as informações fornecidas por Rodrigo.
-Antes da publicação final, recomenda-se confirmar os horários, valores e inserir fotografias reais dos professores e das aulas.
+Para publicar no GitHub Pages, envie o conteúdo desta pasta para a raiz do repositório. O arquivo index.html deve ficar diretamente na raiz.

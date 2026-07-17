@@ -104,13 +104,18 @@
     .rhythms{background:#f4fcfd}
     .section-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:42px}
     .section-head h2{margin-bottom:0;max-width:720px}
+    .rhythms .section-head{display:block}
+    .rhythms .section-head h2{margin-bottom:18px;max-width:850px}
+    .rhythms .section-head .lead{font-size:clamp(1.16rem,1.85vw,1.42rem);max-width:880px;margin-bottom:0}
     .rhythm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
     .rhythm-card{min-height:178px;background:#fff;border:1px solid #dff3f5;border-radius:22px;padding:24px;position:relative;overflow:hidden;transition:.25s ease}
     .rhythm-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
     .rhythm-card::after{content:attr(data-letter);position:absolute;right:-5px;bottom:-30px;font-weight:900;font-size:8.5rem;line-height:1;color:rgba(22,182,201,.09)}
     .rhythm-number{font-size:.74rem;font-weight:800;color:var(--turquoise);letter-spacing:.1em}
     .rhythm-card h3{font-size:1.42rem;margin:24px 0 6px}
-    .rhythm-card p{color:var(--muted);font-size:.92rem;margin:0}
+    .rhythm-card p{color:var(--muted);font-size:.92rem;margin:0 0 16px}
+    .rhythm-more{display:inline-flex;align-items:center;gap:6px;color:var(--turquoise);font-size:.82rem;font-weight:900;position:relative;z-index:2}
+    .rhythm-card:hover .rhythm-more{gap:10px}
 
     /* Experience */
     .experience-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:60px;align-items:start}
@@ -130,9 +135,8 @@
     .schedule::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 10%,rgba(240,90,126,.28),transparent 32%),radial-gradient(circle at 10% 90%,rgba(22,182,201,.18),transparent 28%)}
     .schedule .eyebrow{color:var(--yellow)}
     .schedule .lead{color:rgba(255,255,255,.72)}
-    .schedule-grid{display:grid;grid-template-columns:340px 1fr;gap:44px;align-items:center;position:relative}
-    .poster-wrap{padding:12px;background:#fff;border-radius:24px;transform:rotate(-1.5deg);box-shadow:0 30px 70px rgba(0,0,0,.28)}
-    .poster-wrap img{border-radius:15px;width:100%}
+    .schedule-grid{display:block;position:relative}
+    .schedule-copy{max-width:1180px;margin-inline:auto}
     .time-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
     .time-card{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16);border-radius:22px;padding:22px;backdrop-filter:blur(10px)}
     .time-card h3{color:var(--yellow);font-size:1rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
@@ -152,12 +156,22 @@
     .price-card p{color:var(--muted)}
     .price-list{list-style:none;padding:0;margin:20px 0;display:grid;gap:11px}
     .price-list li{display:flex;gap:10px}.price-list li::before{content:"✓";color:#a68600;font-weight:900}
-    .private-list{margin-top:34px;background:#fff;border-radius:24px;border:1px solid #f0e7bf;overflow:hidden}
+    .private-list{margin-top:38px;background:#fff;border-radius:24px;border:1px solid #f0e7bf;overflow:hidden}
     .private-head{padding:24px 28px;background:var(--yellow);display:flex;justify-content:space-between;gap:20px;align-items:center}
     .private-head h3{margin:0}.private-head p{margin:0;font-size:.9rem}
     .private-table{display:grid;grid-template-columns:repeat(2,1fr)}
     .private-item{padding:22px 28px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px}.private-item:nth-child(odd){border-right:1px solid var(--line)}
     .private-item span{color:var(--muted)}.private-item strong{font-size:1.15rem;white-space:nowrap}
+
+    /* Transition between pricing and partner */
+    .dance-transition{min-height:118px;display:flex;align-items:center;justify-content:center;background:linear-gradient(100deg,#fff4bf 0%,#fff 42%,#eefdff 100%);position:relative;overflow:hidden;border-top:1px solid #f1e8c1;border-bottom:1px solid #dff3f5}
+    .dance-transition::before,.dance-transition::after{content:"";position:absolute;border-radius:50%}
+    .dance-transition::before{width:180px;height:180px;background:rgba(245,196,0,.18);left:-80px;top:-92px}
+    .dance-transition::after{width:160px;height:160px;border:34px solid rgba(22,182,201,.15);right:-74px;bottom:-92px}
+    .transition-inner{display:flex;align-items:center;justify-content:center;gap:20px;text-align:center;font-weight:800;color:var(--purple-dark);position:relative;z-index:1}
+    .transition-mark{width:48px;height:48px;border-radius:16px;background:var(--turquoise);color:#fff;display:grid;place-items:center;font-size:1.35rem;box-shadow:0 12px 24px rgba(22,182,201,.2)}
+    .transition-inner strong{display:block;font-size:1.15rem}
+    .transition-inner span:last-child{color:var(--muted);font-weight:600;font-size:.92rem}
 
     /* Partner explanation */
     .partner{background:#fff}
@@ -172,7 +186,9 @@
     .stage-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:center;position:relative}
     .stage .eyebrow{color:#fff}.stage .lead{color:rgba(255,255,255,.84)}
     .stage-card{background:#fff;color:var(--ink);border-radius:var(--radius);padding:36px;box-shadow:0 30px 70px rgba(100,15,42,.22)}
-    .stage-card .big-number{font-size:5rem;line-height:1;font-weight:900;color:var(--coral);letter-spacing:-.07em}
+    .stage-highlight{font-family:"Playfair Display",Georgia,serif;font-style:italic;font-weight:700;font-size:clamp(2.25rem,4vw,3.45rem);line-height:1.02;color:var(--coral);letter-spacing:-.045em;margin-bottom:18px}
+    .stage-pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:22px}
+    .stage-pillar{padding:12px 14px;border-radius:14px;background:#fff2f5;color:#793047;font-weight:800;font-size:.88rem}
     .stage-card p{color:var(--muted);margin-bottom:0}
 
     /* Teachers */
@@ -187,15 +203,28 @@
 
     /* Contact */
     .contact{background:#fff}
-    .cta-box{background:linear-gradient(115deg,var(--purple) 0%,#53258c 55%,#3c1769 100%);color:#fff;border-radius:36px;padding:58px;display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;position:relative;overflow:hidden}
+    .cta-box{background:linear-gradient(115deg,var(--purple) 0%,#53258c 55%,#3c1769 100%);color:#fff;border-radius:36px;padding:58px;display:grid;grid-template-columns:.92fr 1.08fr;gap:46px;align-items:center;position:relative;overflow:hidden}
     .cta-box::after{content:"";position:absolute;width:290px;height:290px;border-radius:50%;background:var(--coral);right:-190px;top:-120px;opacity:.75}
     .cta-box h2{font-size:clamp(2.5rem,4.6vw,4.2rem)}
     .cta-box p{color:rgba(255,255,255,.78);font-size:1.08rem}
-    .cta-actions{display:flex;flex-direction:column;gap:12px;position:relative;z-index:2}
-    .contact-card{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);border-radius:18px;padding:16px 18px;display:flex;gap:14px;align-items:center;transition:.22s}
-    .contact-card:hover{background:rgba(255,255,255,.16);transform:translateX(4px)}
-    .contact-icon{width:40px;height:40px;border-radius:13px;background:#fff;color:var(--purple);display:grid;place-items:center;font-weight:900}
-    .contact-card small{display:block;color:rgba(255,255,255,.62);font-size:.75rem}.contact-card strong{display:block}
+    .contact-buttons{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;position:relative;z-index:2}
+    .btn-light-outline{border-color:rgba(255,255,255,.64);color:#fff;background:transparent}
+    .btn-light-outline:hover{background:rgba(255,255,255,.1)}
+    .contact-directory{display:grid;gap:14px;position:relative;z-index:2}
+    .contact-group{border-radius:22px;padding:22px}
+    .contact-group.sesi{background:#fff;color:var(--ink);border:3px solid var(--yellow);box-shadow:0 24px 48px rgba(24,10,48,.2)}
+    .contact-group.bliss{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.2)}
+    .contact-group-head{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;margin-bottom:14px}
+    .contact-group h3{margin:0 0 2px;font-size:1.25rem}.contact-group p{font-size:.85rem;margin:0}
+    .contact-group.sesi p{color:var(--muted)}.contact-group.bliss p{color:rgba(255,255,255,.66)}
+    .contact-badge{display:inline-flex;padding:6px 9px;border-radius:999px;background:var(--yellow);color:#332b00;font-size:.66rem;font-weight:900;text-transform:uppercase;letter-spacing:.07em;white-space:nowrap}
+    .contact-lines{display:grid;gap:9px}
+    .contact-line{display:flex;gap:10px;align-items:center;padding-top:9px;border-top:1px solid rgba(100,90,115,.13);font-size:.9rem}
+    .contact-group.bliss .contact-line{border-color:rgba(255,255,255,.13)}
+    .contact-line i{font-style:normal;width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:#f5efff;color:var(--purple);font-weight:900;flex:0 0 30px}
+    .contact-group.bliss .contact-line i{background:rgba(255,255,255,.14);color:#fff}
+    .contact-line small{display:block;font-size:.7rem;color:var(--muted)}
+    .contact-group.bliss .contact-line small{color:rgba(255,255,255,.58)}
     .location-bar{margin-top:22px;display:flex;gap:14px;align-items:flex-start;color:rgba(255,255,255,.78)}
 
     /* Footer */
@@ -219,7 +248,7 @@
       .hero-grid,.about-grid,.experience-grid,.stage-grid,.cta-box{grid-template-columns:1fr}
       .hero{padding-top:50px}.hero-copy{text-align:center}.hero-copy .lead{margin-inline:auto}.hero-actions,.quick-points{justify-content:center}.hero-art{height:520px;max-width:650px;width:100%;margin-inline:auto}
       .about-card{min-height:390px}.rhythm-grid{grid-template-columns:repeat(2,1fr)}
-      .schedule-grid{grid-template-columns:285px 1fr}.time-columns{grid-template-columns:1fr}.poster-wrap{align-self:start}
+      .time-columns{grid-template-columns:1fr 1fr}.time-card:last-child{grid-column:1/-1}
       .price-grid{grid-template-columns:1fr 1fr}.price-card:last-child{grid-column:1/-1}.price-card.featured{transform:none}
       .partner-box{grid-template-columns:1fr}
       .footer-grid{grid-template-columns:1fr 1fr}
@@ -230,9 +259,9 @@
       .hero{min-height:auto;padding:48px 0}.hero h1{font-size:3.3rem}.hero-grid{gap:30px}.hero-art{height:420px}.hero-blob{inset:16px 6px 10px 20px}.hero-symbol{width:66%}.float-tag{font-size:.76rem;padding:9px 12px}.tag-forro{top:62px}.tag-tango{right:0;top:118px}.tag-samba{bottom:34px}.hero-dot{width:58px;height:58px;font-size:1.5rem}
       .about-grid{gap:30px}.about-card{padding:30px;min-height:350px}.about-card img{width:110px;margin-bottom:34px}.values{grid-template-columns:1fr}
       .section-head{align-items:flex-start;flex-direction:column}.rhythm-grid{grid-template-columns:1fr 1fr;gap:12px}.rhythm-card{min-height:155px;padding:19px}.rhythm-card h3{font-size:1.18rem;margin-top:17px}.rhythm-card p{font-size:.84rem}
-      .schedule-grid{grid-template-columns:1fr}.poster-wrap{max-width:330px;margin-inline:auto}.time-columns{grid-template-columns:1fr}
+      .time-columns{grid-template-columns:1fr}.time-card:last-child{grid-column:auto}
       .price-grid{grid-template-columns:1fr}.price-card:last-child{grid-column:auto}.private-table{grid-template-columns:1fr}.private-item:nth-child(odd){border-right:0}.private-head{align-items:flex-start;flex-direction:column}
-      .partner-box{padding:30px}.stage-grid{gap:35px}.teacher-grid{grid-template-columns:1fr}.cta-box{padding:36px 26px;gap:28px}
+      .partner-box{padding:30px}.stage-grid{gap:35px}.stage-pillars{grid-template-columns:1fr}.teacher-grid{grid-template-columns:1fr}.cta-box{padding:36px 26px;gap:28px}.contact-buttons .btn{width:100%}.contact-group-head{flex-direction:column}
       .footer-grid{grid-template-columns:1fr}.copyright{flex-direction:column}.whatsapp-float{width:52px;height:52px}
     }
 
@@ -248,7 +277,7 @@
       <nav class="nav-links" id="navLinks" aria-label="Menu principal">
         <a href="#sobre">A Bliss</a><a href="#ritmos">Ritmos</a><a href="#horarios">Horários</a><a href="#valores">Valores</a><a href="#professores">Professores</a><a href="#contato">Contato</a>
       </nav>
-      <a class="btn btn-primary nav-cta desktop-cta" href="https://wa.me/5531975847108?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20aula%20experimental%20na%20Bliss." target="_blank" rel="noopener">Agendar aula</a>
+      <a class="btn btn-primary nav-cta desktop-cta" href="https://wa.me/5531998777605?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20aula%20experimental%20de%20dan%C3%A7a%20de%20sal%C3%A3o%20com%20a%20Bliss%20no%20SESI%20Cultura." target="_blank" rel="noopener">Agendar aula</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
     </div>
   </header>
@@ -261,7 +290,7 @@
           <h1>Descubra a <span class="script">felicidade</span> de dançar.</h1>
           <p class="lead">Na Bliss, cada passo cria conexão, alegria e confiança. Aprenda dança de salão em um ambiente acolhedor, com turmas para diferentes níveis.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary btn-arrow" href="https://wa.me/5531975847108?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20aula%20experimental%20na%20Bliss." target="_blank" rel="noopener">Agendar aula experimental</a>
+            <a class="btn btn-primary btn-arrow" href="https://wa.me/5531998777605?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20aula%20experimental%20de%20dan%C3%A7a%20de%20sal%C3%A3o%20com%20a%20Bliss%20no%20SESI%20Cultura." target="_blank" rel="noopener">Agendar aula experimental</a>
             <a class="btn btn-outline" href="#ritmos">Conhecer os ritmos</a>
           </div>
           <div class="quick-points">
@@ -301,18 +330,19 @@
     <section class="section rhythms" id="ritmos">
       <div class="container">
         <div class="section-head reveal">
-          <div><div class="eyebrow" style="color:var(--turquoise)">Movimento que conecta</div><h2>Ritmos para você se encontrar na pista.</h2></div>
+          <div class="eyebrow" style="color:var(--turquoise)">Movimento que conecta</div>
+          <h2>Ritmos para você se encontrar na pista.</h2>
           <p class="lead">Uma formação completa em dança de salão, desenvolvendo técnica, musicalidade, condução, confiança e liberdade para dançar.</p>
         </div>
         <div class="rhythm-grid">
-          <article class="rhythm-card reveal" data-letter="F"><span class="rhythm-number">01</span><h3>Forró</h3><p>Energia, proximidade e tradição brasileira.</p></article>
-          <article class="rhythm-card reveal" data-letter="S"><span class="rhythm-number">02</span><h3>Samba</h3><p>Ginga, elegância e muita brasilidade.</p></article>
-          <article class="rhythm-card reveal" data-letter="S"><span class="rhythm-number">03</span><h3>Salsa</h3><p>Ritmo vibrante, presença e expressão.</p></article>
-          <article class="rhythm-card reveal" data-letter="B"><span class="rhythm-number">04</span><h3>Bolero</h3><p>Conexão, suavidade e romantismo.</p></article>
-          <article class="rhythm-card reveal" data-letter="S"><span class="rhythm-number">05</span><h3>Soltinho</h3><p>Leveza e diversão ao som de grandes hits.</p></article>
-          <article class="rhythm-card reveal" data-letter="B"><span class="rhythm-number">06</span><h3>Bachata</h3><p>Musicalidade, fluidez e conexão.</p></article>
-          <article class="rhythm-card reveal" data-letter="K"><span class="rhythm-number">07</span><h3>Kizomba</h3><p>Cadência, sensibilidade e presença.</p></article>
-          <article class="rhythm-card reveal" data-letter="T"><span class="rhythm-number">08</span><h3>Tango</h3><p>Intensidade, técnica e elegância.</p></article>
+          <a class="rhythm-card reveal" data-letter="F" href="ritmos/forro.html"><span class="rhythm-number">01</span><h3>Forró</h3><p>Energia, proximidade e tradição brasileira.</p><span class="rhythm-more">Conhecer o ritmo →</span></a>
+          <a class="rhythm-card reveal" data-letter="B" href="ritmos/bolero.html"><span class="rhythm-number">02</span><h3>Bolero</h3><p>Conexão, suavidade e romantismo.</p><span class="rhythm-more">Conhecer o ritmo →</span></a>
+          <a class="rhythm-card reveal" data-letter="S" href="ritmos/samba.html"><span class="rhythm-number">03</span><h3>Samba</h3><p>Ginga, elegância e muita brasilidade.</p><span class="rhythm-more">Conhecer o ritmo →</span></a>
+          <a class="rhythm-card reveal" data-letter="S" href="ritmos/salsa.html"><span class="rhythm-number">04</span><h3>Salsa</h3><p>Ritmo vibrante, presença e expressão.</p><span class="rhythm-more">Conhecer o ritmo →</span></a>
+          <a class="rhythm-card reveal" data-letter="T" href="ritmos/tango.html"><span class="rhythm-number">05</span><h3>Tango</h3><p>Intensidade, técnica e elegância.</p><span class="rhythm-more">Conhecer o ritmo →</span></a>
+          <a class="rhythm-card reveal" data-letter="S" href="ritmos/soltinho.html"><span class="rhythm-number">06</span><h3>Soltinho</h3><p>Leveza e diversão ao som de grandes hits.</p><span class="rhythm-more">Conhecer o ritmo →</span></a>
+          <a class="rhythm-card reveal" data-letter="B" href="ritmos/bachata.html"><span class="rhythm-number">07</span><h3>Bachata</h3><p>Musicalidade, fluidez e conexão.</p><span class="rhythm-more">Conhecer o ritmo →</span></a>
+          <a class="rhythm-card reveal" data-letter="K" href="ritmos/kizomba.html"><span class="rhythm-number">08</span><h3>Kizomba</h3><p>Cadência, sensibilidade e presença.</p><span class="rhythm-more">Conhecer o ritmo →</span></a>
         </div>
       </div>
     </section>
@@ -339,8 +369,7 @@
 
     <section class="section schedule" id="horarios">
       <div class="container schedule-grid">
-        <div class="poster-wrap reveal"><img src="assets/horarios-oficiais.png" alt="Quadro oficial de horários da Bliss Escola de Dança"></div>
-        <div class="reveal">
+        <div class="schedule-copy reveal">
           <div class="eyebrow">Organize seus passos</div>
           <h2>Horários das turmas</h2>
           <p class="lead">Escolha o dia e o nível que melhor se encaixam na sua rotina.</p>
@@ -361,9 +390,9 @@
           <p class="lead">Valores mensais para aulas presenciais. Consulte a equipe para confirmar vagas e condições de matrícula.</p>
         </div>
         <div class="price-grid">
-          <article class="price-card featured reveal"><span class="popular">Mais completo</span><span class="price-label">Dança de salão</span><div class="price">R$ 216<small>/mês</small></div><p>Para quem quer evoluir com mais frequência.</p><ul class="price-list"><li>2 vezes por semana</li><li>ou turma aos sábados</li><li>Acompanhamento em grupo</li></ul><a class="btn btn-primary" href="https://wa.me/5531975847108?text=Ol%C3%A1%21%20Quero%20saber%20mais%20sobre%20o%20plano%20de%20R%24%20216%20da%20Bliss." target="_blank" rel="noopener">Quero este plano</a></article>
-          <article class="price-card reveal"><span class="price-label">Dança de salão</span><div class="price">R$ 125<small>/mês</small></div><p>Para começar com uma aula por semana.</p><ul class="price-list"><li>1 vez por semana</li><li>Turmas por nível</li><li>Prática com troca de pares</li></ul><a class="btn btn-outline" href="https://wa.me/5531975847108?text=Ol%C3%A1%21%20Quero%20saber%20mais%20sobre%20o%20plano%20de%20R%24%20125%20da%20Bliss." target="_blank" rel="noopener">Consultar vagas</a></article>
-          <article class="price-card reveal"><span class="price-label">Primeiro passo</span><div class="price" style="font-size:2.45rem">Aula <span style="color:var(--coral)">experimental</span></div><p>Conheça a metodologia, a equipe e o ambiente antes de escolher sua turma.</p><ul class="price-list"><li>Experiência presencial</li><li>Orientação da equipe</li><li>Agendamento por WhatsApp</li></ul><a class="btn btn-coral" href="https://wa.me/5531975847108?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20aula%20experimental%20na%20Bliss." target="_blank" rel="noopener">Agendar agora</a></article>
+          <article class="price-card reveal"><span class="price-label">Primeiro passo</span><div class="price" style="font-size:2.45rem">Aula <span style="color:var(--coral)">experimental</span></div><p>Conheça a metodologia, a equipe e o ambiente antes de escolher sua turma.</p><ul class="price-list"><li>Experiência presencial</li><li>Orientação da equipe</li><li>Agendamento por WhatsApp</li></ul><a class="btn btn-coral" href="https://wa.me/5531998777605?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20aula%20experimental%20de%20dan%C3%A7a%20de%20sal%C3%A3o%20com%20a%20Bliss%20no%20SESI%20Cultura." target="_blank" rel="noopener">Agendar agora</a></article>
+          <article class="price-card featured reveal"><span class="popular">Mais completo</span><span class="price-label">Dança de salão</span><div class="price">R$ 216<small>/mês</small></div><p>Para quem quer evoluir com mais frequência.</p><ul class="price-list"><li>2 vezes por semana</li><li>ou turma aos sábados</li><li>Acompanhamento em grupo</li></ul><a class="btn btn-primary" href="https://wa.me/5531998777605?text=Ol%C3%A1%21%20Quero%20saber%20mais%20sobre%20o%20plano%20de%20R%24%20216%20da%20dan%C3%A7a%20de%20sal%C3%A3o%20da%20Bliss%20no%20SESI%20Cultura." target="_blank" rel="noopener">Quero este plano</a></article>
+          <article class="price-card reveal"><span class="price-label">Dança de salão</span><div class="price">R$ 125<small>/mês</small></div><p>Para começar com uma aula por semana.</p><ul class="price-list"><li>1 vez por semana</li><li>Turmas por nível</li><li>Prática com troca de pares</li></ul><a class="btn btn-outline" href="https://wa.me/5531998777605?text=Ol%C3%A1%21%20Quero%20saber%20mais%20sobre%20o%20plano%20de%20R%24%20125%20da%20dan%C3%A7a%20de%20sal%C3%A3o%20da%20Bliss%20no%20SESI%20Cultura." target="_blank" rel="noopener">Consultar vagas</a></article>
         </div>
         <div class="private-list reveal">
           <div class="private-head"><div><h3>Aulas particulares</h3><p>Atendimento personalizado para acelerar sua evolução.</p></div><strong>Valores mensais</strong></div>
@@ -375,6 +404,10 @@
       </div>
     </section>
 
+    <div class="dance-transition">
+      <div class="container transition-inner"><span class="transition-mark">♪</span><div><strong>Seu ritmo, seu tempo, seu jeito de começar.</strong><span>Em grupo, em aula particular, com par ou chegando sozinho.</span></div></div>
+    </div>
+
     <section class="section partner">
       <div class="container partner-box reveal">
         <div><div class="eyebrow" style="color:var(--turquoise)">Pode vir sozinho</div><h2>Não é necessário trazer um par.</h2><p class="lead">Temos monitores para auxiliar no equilíbrio quantitativo dos pares. Para enriquecer a prática, estimulamos a troca de parceiros durante a aula.</p><p>Quem preferir também pode permanecer dançando somente com o próprio par, desde que ele não seja um monitor da turma.</p></div>
@@ -385,7 +418,7 @@
     <section class="section stage">
       <div class="container stage-grid">
         <div class="reveal"><div class="eyebrow">Do salão ao palco</div><h2>Arte, expressão e momentos inesquecíveis.</h2><p class="lead">Ao final de cada semestre, estimulamos os alunos a conhecerem também o lado artístico da dança, com apresentações individuais e coletivas no palco do teatro.</p></div>
-        <div class="stage-card reveal"><div class="big-number">1</div><h3>experiência completa</h3><p>Aprender, praticar, socializar e compartilhar a dança com o público.</p></div>
+        <div class="stage-card reveal"><div class="stage-highlight">Uma experiência completa</div><p>Aprender, praticar, socializar e compartilhar a dança com o público — do primeiro passo à emoção do palco.</p><div class="stage-pillars"><div class="stage-pillar">Aprender</div><div class="stage-pillar">Praticar</div><div class="stage-pillar">Socializar</div><div class="stage-pillar">Apresentar</div></div></div>
       </div>
     </section>
 
@@ -402,12 +435,31 @@
 
     <section class="section contact" id="contato">
       <div class="container cta-box reveal">
-        <div><div class="eyebrow" style="color:var(--yellow)">Dê o primeiro passo</div><h2>Venha fazer uma aula <span class="script" style="color:var(--yellow)">experimental.</span></h2><p>Conheça a Bliss, encontre sua turma e descubra como a dança pode transformar a sua rotina.</p><a class="btn btn-white btn-arrow" href="https://wa.me/5531975847108?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20aula%20experimental%20na%20Bliss." target="_blank" rel="noopener">Falar com a Bliss</a><div class="location-bar"><span>⌖</span><div><strong>Rua Álvares Maciel, 59</strong><br>Santa Efigênia — Belo Horizonte/MG</div></div></div>
-        <div class="cta-actions">
-          <a class="contact-card" href="https://wa.me/5531975847108" target="_blank" rel="noopener"><span class="contact-icon">W</span><span><small>WhatsApp Bliss</small><strong>(31) 97584-7108</strong></span></a>
-          <a class="contact-card" href="https://wa.me/5531998777605" target="_blank" rel="noopener"><span class="contact-icon">W</span><span><small>WhatsApp SESI Minas</small><strong>(31) 99877-7605</strong></span></a>
-          <a class="contact-card" href="tel:+553121160418"><span class="contact-icon">☎</span><span><small>Telefone SESI Minas</small><strong>(31) 2116-0418</strong></span></a>
-          <a class="contact-card" href="mailto:sesiculturamg@fiemg.com.br"><span class="contact-icon">@</span><span><small>E-mail</small><strong>sesiculturamg@fiemg.com.br</strong></span></a>
+        <div><div class="eyebrow" style="color:var(--yellow)">Dê o primeiro passo</div><h2>Venha fazer uma aula <span class="script" style="color:var(--yellow)">experimental.</span></h2><p>Para matrículas, informações sobre turmas e agendamento da aula experimental, o contato principal é a secretaria de cursos do SESI Cultura.</p>
+          <div class="contact-buttons">
+            <a class="btn btn-white" href="https://wa.me/5531998777605?text=Ol%C3%A1%21%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20as%20aulas%20de%20dan%C3%A7a%20de%20sal%C3%A3o%20da%20Bliss%20no%20SESI%20Cultura." target="_blank" rel="noopener">WhatsApp do SESI</a>
+            <a class="btn btn-coral" href="https://wa.me/5531975847108?text=Ol%C3%A1%21%20Gostaria%20de%20conhecer%20a%20Bliss%20Escola%20de%20Dan%C3%A7a." target="_blank" rel="noopener">WhatsApp da Bliss</a>
+            <a class="btn btn-light-outline" href="tel:+553121160418">Telefonar para o SESI</a>
+          </div>
+          <div class="location-bar"><span>⌖</span><div><strong>Rua Álvares Maciel, 59</strong><br>Santa Efigênia — Belo Horizonte/MG</div></div>
+        </div>
+        <div class="contact-directory">
+          <section class="contact-group sesi">
+            <div class="contact-group-head"><div><h3>SESI Cultura</h3><p>Secretaria, matrícula, vagas e aula experimental</p></div><span class="contact-badge">Contato principal</span></div>
+            <div class="contact-lines">
+              <a class="contact-line" href="https://wa.me/5531998777605" target="_blank" rel="noopener"><i>W</i><span><small>WhatsApp</small><strong>(31) 99877-7605</strong></span></a>
+              <a class="contact-line" href="tel:+553121160418"><i>☎</i><span><small>Telefone</small><strong>(31) 2116-0418</strong></span></a>
+              <a class="contact-line" href="mailto:sesiculturamg@fiemg.com.br"><i>@</i><span><small>E-mail</small><strong>sesiculturamg@fiemg.com.br</strong></span></a>
+            </div>
+          </section>
+          <section class="contact-group bliss">
+            <div class="contact-group-head"><div><h3>Bliss Escola de Dança</h3><p>Equipe, conteúdo, eventos e relacionamento com a escola</p></div></div>
+            <div class="contact-lines">
+              <a class="contact-line" href="https://wa.me/5531975847108" target="_blank" rel="noopener"><i>W</i><span><small>WhatsApp</small><strong>(31) 97584-7108</strong></span></a>
+              <a class="contact-line" href="mailto:blissescoladedanca@gmail.com"><i>@</i><span><small>E-mail</small><strong>blissescoladedanca@gmail.com</strong></span></a>
+              <a class="contact-line" href="https://www.instagram.com/blissescoladedanca/" target="_blank" rel="noopener"><i>◎</i><span><small>Instagram</small><strong>@blissescoladedanca</strong></span></a>
+            </div>
+          </section>
         </div>
       </div>
     </section>
@@ -419,7 +471,7 @@
         <div><img class="footer-logo" src="assets/logo-horizontal.png" alt="Bliss Escola de Dança"><p>Felicidade, conexão e movimento em cada passo.</p><div class="socials"><a href="https://www.instagram.com/blissescoladedanca/" target="_blank" rel="noopener" aria-label="Instagram">◎</a><a href="https://wa.me/5531975847108" target="_blank" rel="noopener" aria-label="WhatsApp">W</a></div></div>
         <div><h4>A escola</h4><div class="footer-links"><a href="#sobre">Sobre a Bliss</a><a href="#professores">Professores</a><a href="#ritmos">Ritmos</a></div></div>
         <div><h4>Informações</h4><div class="footer-links"><a href="#horarios">Horários</a><a href="#valores">Valores</a><a href="#contato">Aula experimental</a></div></div>
-        <div><h4>Onde estamos</h4><p>Rua Álvares Maciel, 59<br>Santa Efigênia<br>Belo Horizonte — MG</p></div>
+        <div><h4>Contato Bliss</h4><p><a href="mailto:blissescoladedanca@gmail.com">blissescoladedanca@gmail.com</a><br><a href="https://www.instagram.com/blissescoladedanca/" target="_blank" rel="noopener">@blissescoladedanca</a><br>Rua Álvares Maciel, 59 — BH/MG</p></div>
       </div>
       <div class="copyright"><span>© <span id="year"></span> Bliss Escola de Dança. Todos os direitos reservados.</span><span>Site desenvolvido com movimento e alegria.</span></div>
     </div>
