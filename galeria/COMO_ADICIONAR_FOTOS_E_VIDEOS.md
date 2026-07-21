@@ -18,3 +18,13 @@ Use `foto-01.jpg`, `foto-02.jpg` ... até `foto-30.jpg`. Também são aceitos JP
 Use `video-01.mp4` ... até `video-05.mp4`. Também são aceitos WebM e MOV.
 
 O site detecta os arquivos automaticamente; não é necessário editar o HTML.
+
+
+## Extensões aceitas
+
+O site aceita extensões em letras minúsculas ou maiúsculas:
+
+- Fotos: `.jpg`, `.jpeg`, `.png`, `.webp`, `.JPG`, `.JPEG`, `.PNG`, `.WEBP`
+- Vídeos: `.mp4`, `.webm`, `.mov`, `.MP4`, `.WEBM`, `.MOV`
+
+O nome antes da extensão precisa seguir o padrão, por exemplo: `foto-01.JPG`.
