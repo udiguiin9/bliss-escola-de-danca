@@ -116,12 +116,37 @@ async function setOtherShowCovers(){
 
 
 const mediaBase='../midia/elo-2023/';
-const imageExts=['jpg','jpeg','png','webp','JPG','JPEG','PNG','WEBP'];
 const videoExts=['mp4','webm','mov','MP4','WEBM','MOV'];
-function loadImage(base){return new Promise(resolve=>{let i=0;const next=()=>{if(i>=imageExts.length)return resolve(null);const img=new Image();img.onload=()=>resolve(img);img.onerror=()=>{i++;next()};img.src=base+'.'+imageExts[i]};next()})}
+function loadPhoto(url){
+  return new Promise(resolve=>{
+    const img=new Image();
+    img.onload=()=>resolve(img);
+    img.onerror=()=>resolve(null);
+    img.src=url;
+  });
+}
 const photoSources=[];
 let currentPhotoIndex=0;
-async function buildPhotos(){const grid=document.getElementById('photoGrid');for(let n=1;n<=30;n++){const num=String(n).padStart(2,'0');const img=await loadImage(mediaBase+'foto-'+num);if(!img)continue;img.alt='Foto do espetáculo '+num;const photoIndex=photoSources.length;photoSources.push(img.src);const b=document.createElement('button');b.className='photo';b.type='button';b.setAttribute('aria-label','Ampliar foto '+num);b.appendChild(img);b.addEventListener('click',()=>openLightbox(photoIndex));grid.appendChild(b)}if(!photoSources.length)document.getElementById('photoSection').style.display='none'}
+async function buildPhotos(){
+  const grid=document.getElementById('photoGrid');
+  for(let n=1;n<=100;n++){
+    const fileName='foto ('+n+').JPG';
+    const img=await loadPhoto(mediaBase+fileName);
+    if(!img)break;
+    img.alt='Foto '+n+' do espetáculo';
+    img.decoding='async';
+    const photoIndex=photoSources.length;
+    photoSources.push(img.src);
+    const b=document.createElement('button');
+    b.className='photo';
+    b.type='button';
+    b.setAttribute('aria-label','Ampliar foto '+n);
+    b.appendChild(img);
+    b.addEventListener('click',()=>openLightbox(photoIndex));
+    grid.appendChild(b);
+  }
+  if(!photoSources.length)document.getElementById('photoSection').style.display='none';
+}
 async function exists(url){try{const r=await fetch(url,{method:'HEAD',cache:'no-store'});return r.ok}catch(e){return false}}
 async function buildVideos(){const grid=document.getElementById('videoGrid');let count=0;for(let n=1;n<=5;n++){const num=String(n).padStart(2,'0');let found=null;for(const ext of videoExts){const url=mediaBase+'video-'+num+'.'+ext;if(await exists(url)){found=url;break}}if(!found)continue;const wrap=document.createElement('div');wrap.className='video-card';const v=document.createElement('video');v.controls=true;v.preload='metadata';v.src=found;wrap.appendChild(v);grid.appendChild(wrap);count++}if(!count)document.getElementById('videoSection').style.display='none'}
 const cover=document.querySelector('[data-cover]');loadImage(cover.dataset.cover).then(img=>{if(img){img.alt='Capa do espetáculo Elo';cover.appendChild(img)}});
