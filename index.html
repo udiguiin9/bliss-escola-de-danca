@@ -595,6 +595,49 @@
   display:block;
   object-fit:cover;
 }
+
+/* Cabeçalho fixo com faixa coral — V13 */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:60;
+  background:rgba(255,247,249,.97);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:8px solid var(--coral);
+  box-shadow:0 5px 22px rgba(37,25,49,.08);
+}
+.site-header::before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  height:4px;
+  background:#222127;
+}
+.site-header .nav{
+  min-height:92px;
+  padding-top:4px;
+}
+.site-header .btn{
+  padding-inline:24px;
+  white-space:nowrap;
+}
+@media(max-width:900px){
+  .site-header{
+    border-bottom-width:6px;
+  }
+  .site-header .nav{
+    min-height:78px;
+  }
+}
+@media(max-width:600px){
+  .site-header .btn{
+    padding-inline:16px;
+    font-size:.82rem;
+  }
+}
 </style>
 </head>
 <body>
@@ -604,7 +647,7 @@
 <nav aria-label="Menu principal" class="nav-links" id="navLinks">
 <a href="#sobre">A Bliss</a><a href="#ritmos">Ritmos</a><a href="#horarios">Horários</a><a href="#valores">Valores</a><a href="#equipe">Equipe</a><a href="galeria/index.html">Galeria</a><a href="#contato">Contato</a>
 </nav>
-<a class="btn btn-primary nav-cta desktop-cta" href="https://wa.me/5531998777605?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20aula%20experimental%20de%20dan%C3%A7a%20de%20sal%C3%A3o%20com%20a%20Bliss%20no%20SESI%20Cultura." rel="noopener" target="_blank">Agendar aula</a>
+<a aria-label="Agendar aula experimental" class="btn btn-primary nav-cta desktop-cta" href="https://wa.me/5531998777605?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20aula%20experimental%20de%20dan%C3%A7a%20de%20sal%C3%A3o%20com%20a%20Bliss%20no%20SESI%20Cultura." rel="noopener" target="_blank">Agendar aula experimental</a>
 <button aria-expanded="false" aria-label="Abrir menu" class="menu-toggle" id="menuToggle">☰</button>
 </div>
 </header>
