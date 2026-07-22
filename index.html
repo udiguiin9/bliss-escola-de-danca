@@ -193,7 +193,7 @@
     .stage-highlight{font-family:"Playfair Display",Georgia,serif;font-style:italic;font-weight:700;font-size:clamp(2.25rem,4vw,3.45rem);line-height:1.02;color:var(--coral);letter-spacing:-.045em;margin-bottom:18px}
     .stage-pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:22px}
     .stage-pillar{padding:12px 14px;border-radius:14px;background:#fff2f5;color:#793047;font-weight:800;font-size:.88rem}
-    .stage-card p{color:var(--muted);margin-bottom:0}.stage-actions{margin-top:26px}.stage-actions .btn{background:#fff;color:var(--coral)}
+    .stage-card p{color:var(--muted);margin-bottom:0}.stage-actions .btn{background:#fff;color:var(--coral)}
 
     /* Teachers */
     .teachers{background:var(--soft)}
@@ -305,7 +305,7 @@
 .stage-grid{
   display:block;max-width:860px;margin-inline:auto;text-align:center;
 }
-.stage-actions{display:flex;justify-content:center}
+
 .teacher-photo{
   overflow:hidden;background:#fff;padding:0;border:4px solid #fff;
   box-shadow:0 12px 34px rgba(44,31,65,.15);
@@ -459,6 +459,142 @@
     border-top:1px solid var(--line);
   }
 }
+
+/* Navegação direta dos espetáculos — V11 */
+.stage-show-buttons{
+  width:min(100%,1040px);
+  margin:34px auto 0;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+.stage-show-button{
+  min-height:108px;
+  padding:18px 20px;
+  border-radius:22px;
+  background:rgba(255,255,255,.96);
+  color:var(--ink);
+  display:grid;
+  grid-template-columns:1fr auto;
+  grid-template-rows:auto 1fr;
+  align-items:center;
+  gap:4px 14px;
+  text-align:left;
+  box-shadow:0 14px 34px rgba(105,28,52,.14);
+  border:1px solid rgba(255,255,255,.65);
+  transition:.22s ease;
+}
+.stage-show-button:hover{
+  transform:translateY(-5px);
+  background:#fff;
+  box-shadow:0 22px 48px rgba(105,28,52,.2);
+}
+.stage-show-year{
+  grid-column:1;
+  grid-row:1;
+  color:var(--coral);
+  font-size:.74rem;
+  font-weight:900;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.stage-show-name{
+  grid-column:1;
+  grid-row:2;
+  font-size:1.08rem;
+  line-height:1.15;
+}
+.stage-show-arrow{
+  grid-column:2;
+  grid-row:1 / span 2;
+  color:var(--coral);
+  font-size:1.5rem;
+  font-weight:900;
+  transition:.22s;
+}
+.stage-show-button:hover .stage-show-arrow{
+  transform:translateX(4px);
+}
+@media(max-width:900px){
+  .stage-show-buttons{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+@media(max-width:560px){
+  .stage-show-buttons{
+    grid-template-columns:1fr;
+    gap:11px;
+  }
+  .stage-show-button{
+    min-height:92px;
+    padding:16px 18px;
+  }
+}
+
+/* Hover com capa nos botões dos espetáculos — V12 */
+.stage-show-button{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+}
+.stage-show-button::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:var(--stage-cover);
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  transform:scale(1.05);
+  transition:opacity .28s ease, transform .32s ease;
+  z-index:0;
+}
+.stage-show-button::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(12,10,20,.18), rgba(12,10,20,.72));
+  opacity:0;
+  transition:opacity .28s ease;
+  z-index:0;
+}
+.stage-show-button > *{
+  position:relative;
+  z-index:1;
+  transition:color .22s ease, transform .22s ease;
+}
+.stage-show-button:hover{
+  border-color:rgba(255,255,255,.55);
+}
+.stage-show-button:hover::before{
+  opacity:1;
+  transform:scale(1);
+}
+.stage-show-button:hover::after{
+  opacity:1;
+}
+.stage-show-button:hover .stage-show-year{
+  color:#fff0a8;
+}
+.stage-show-button:hover .stage-show-name,
+.stage-show-button:hover .stage-show-arrow{
+  color:#fff;
+}
+.stage-show-button:not([data-has-cover="true"]):hover::before,
+.stage-show-button:not([data-has-cover="true"]):hover::after{
+  opacity:0;
+}
+
+/* Fotos reais da equipe */
+.teacher-photo{
+  background:#fff;
+}
+.teacher-photo img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+}
 </style>
 </head>
 <body>
@@ -576,17 +712,17 @@
 </section>
 <section class="section stage">
 <div class="container stage-grid">
-<div class="reveal"><div class="eyebrow">Do salão ao palco</div><h2>Arte, expressão e momentos inesquecíveis.</h2><p class="lead">Ao final de cada semestre, estimulamos os alunos a conhecerem também o lado artístico da dança, com apresentações individuais e coletivas no palco do teatro.</p><div class="stage-actions"><a class="btn" href="galeria/index.html">Conhecer nossos espetáculos →</a></div></div>
+<div class="reveal"><div class="eyebrow">Do salão ao palco</div><h2>Arte, expressão e momentos inesquecíveis.</h2><p class="lead">Ao final de cada semestre, estimulamos os alunos a conhecerem também o lado artístico da dança, com apresentações individuais e coletivas no palco do teatro.</p><div class="stage-show-buttons"><a aria-label="Abrir galeria do espetáculo ABRAÇO, 2019" class="stage-show-button" data-cover-base="galeria/midia/abraco-2019/capa" href="galeria/espetaculos/abraco-2019.html"><span class="stage-show-year">2019</span><strong class="stage-show-name">ABRAÇO</strong><span aria-hidden="true" class="stage-show-arrow">→</span></a><a aria-label="Abrir galeria do espetáculo ALMA DANÇANTE, 2021" class="stage-show-button" data-cover-base="galeria/midia/alma-dancante-2021/capa" href="galeria/espetaculos/alma-dancante-2021.html"><span class="stage-show-year">2021</span><strong class="stage-show-name">ALMA DANÇANTE</strong><span aria-hidden="true" class="stage-show-arrow">→</span></a><a aria-label="Abrir galeria do espetáculo (re)Encontro, 2022" class="stage-show-button" data-cover-base="galeria/midia/reencontro-2022/capa" href="galeria/espetaculos/reencontro-2022.html"><span class="stage-show-year">2022</span><strong class="stage-show-name">(re)Encontro</strong><span aria-hidden="true" class="stage-show-arrow">→</span></a><a aria-label="Abrir galeria do espetáculo Elo, 2023" class="stage-show-button" data-cover-base="galeria/midia/elo-2023/capa" href="galeria/espetaculos/elo-2023.html"><span class="stage-show-year">2023</span><strong class="stage-show-name">Elo</strong><span aria-hidden="true" class="stage-show-arrow">→</span></a><a aria-label="Abrir galeria do espetáculo Estações, 2024" class="stage-show-button" data-cover-base="galeria/midia/estacoes-2024/capa" href="galeria/espetaculos/estacoes-2024.html"><span class="stage-show-year">2024</span><strong class="stage-show-name">Estações</strong><span aria-hidden="true" class="stage-show-arrow">→</span></a><a aria-label="Abrir galeria do espetáculo Cine Bliss, 2025" class="stage-show-button" data-cover-base="galeria/midia/cine-bliss-2025/capa" href="galeria/espetaculos/cine-bliss-2025.html"><span class="stage-show-year">2025</span><strong class="stage-show-name">Cine Bliss</strong><span aria-hidden="true" class="stage-show-arrow">→</span></a></div></div>
 </div>
 </section>
 <section class="section teachers" id="equipe">
 <div class="container">
 <div class="section-head reveal"><div><div class="eyebrow">Quem faz a Bliss</div><h2>Equipe Bliss</h2></div><p class="lead">Uma equipe dedicada a ensinar com técnica, atenção e alegria.</p></div>
-<div class="teacher-grid"><article class="teacher-card reveal"><a aria-label="Abrir Instagram de Andrea Nepce" class="avatar teacher-photo" href="https://www.instagram.com/andreanepce?igsh=NnZxYXJ5eDQ3d3Jv" rel="noopener" target="_blank"><img alt="Foto de Andrea Nepce" loading="lazy" onerror="this.onerror=null;this.src='assets/icone-bliss.png';this.classList.add('teacher-photo-fallback');" referrerpolicy="no-referrer" src="https://unavatar.io/instagram/andreanepce"/></a><h3>Andrea Nepce</h3><p>Professora e sócia</p><a class="teacher-instagram" href="https://www.instagram.com/andreanepce?igsh=NnZxYXJ5eDQ3d3Jv" rel="noopener" target="_blank"><svg aria-hidden="true" class="brand-svg" viewbox="0 0 16 16">
+<div class="teacher-grid"><article class="teacher-card reveal"><a aria-label="Abrir Instagram de Andrea Nepce" class="avatar teacher-photo" href="https://www.instagram.com/andreanepce?igsh=NnZxYXJ5eDQ3d3Jv" rel="noopener" target="_blank"><img alt="Foto de Andrea Nepce" class="" loading="lazy" src="assets/prof-andrea.png"/></a><h3>Andrea Nepce</h3><p>Professora e sócia</p><a class="teacher-instagram" href="https://www.instagram.com/andreanepce?igsh=NnZxYXJ5eDQ3d3Jv" rel="noopener" target="_blank"><svg aria-hidden="true" class="brand-svg" viewbox="0 0 16 16">
 <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.918 3.918 0 0 0-.923-1.417A3.916 3.916 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.318.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.599-.92c-.11-.281-.24-.704-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.23c.036-.78.166-1.205.276-1.486.145-.374.319-.64.599-.92.28-.281.546-.454.92-.599.281-.11.704-.24 1.485-.275.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zM8 3.892a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" fill="currentColor"></path>
-</svg><span>@andreanepce</span></a></article><article class="teacher-card reveal"><a aria-label="Abrir Instagram de Claudio Apolinario" class="avatar teacher-photo" href="https://www.instagram.com/apolinarioch?igsh=MWF6eDVvMjk2dzdtNw==" rel="noopener" target="_blank"><img alt="Foto de Claudio Apolinario" loading="lazy" onerror="this.onerror=null;this.src='assets/icone-bliss.png';this.classList.add('teacher-photo-fallback');" referrerpolicy="no-referrer" src="https://unavatar.io/instagram/apolinarioch"/></a><h3>Claudio Apolinario</h3><p>Professor e sócio</p><a class="teacher-instagram" href="https://www.instagram.com/apolinarioch?igsh=MWF6eDVvMjk2dzdtNw==" rel="noopener" target="_blank"><svg aria-hidden="true" class="brand-svg" viewbox="0 0 16 16">
+</svg><span>@andreanepce</span></a></article><article class="teacher-card reveal"><a aria-label="Abrir Instagram de Claudio Apolinario" class="avatar teacher-photo" href="https://www.instagram.com/apolinarioch?igsh=MWF6eDVvMjk2dzdtNw==" rel="noopener" target="_blank"><img alt="Foto de Claudio Apolinario" class="" loading="lazy" src="assets/prof-claudio.png"/></a><h3>Claudio Apolinario</h3><p>Professor e sócio</p><a class="teacher-instagram" href="https://www.instagram.com/apolinarioch?igsh=MWF6eDVvMjk2dzdtNw==" rel="noopener" target="_blank"><svg aria-hidden="true" class="brand-svg" viewbox="0 0 16 16">
 <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.918 3.918 0 0 0-.923-1.417A3.916 3.916 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.318.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.599-.92c-.11-.281-.24-.704-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.23c.036-.78.166-1.205.276-1.486.145-.374.319-.64.599-.92.28-.281.546-.454.92-.599.281-.11.704-.24 1.485-.275.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zM8 3.892a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" fill="currentColor"></path>
-</svg><span>@apolinarioch</span></a></article><article class="teacher-card reveal"><a aria-label="Abrir Instagram de Rodrigo Deslandes" class="avatar teacher-photo" href="https://www.instagram.com/rodrigoldes?igsh=MTZ6NmtmeGhzYmJ3eQ==" rel="noopener" target="_blank"><img alt="Foto de Rodrigo Deslandes" loading="lazy" onerror="this.onerror=null;this.src='assets/icone-bliss.png';this.classList.add('teacher-photo-fallback');" referrerpolicy="no-referrer" src="https://unavatar.io/instagram/rodrigoldes"/></a><h3>Rodrigo Deslandes</h3><p>Professor e sócio</p><a class="teacher-instagram" href="https://www.instagram.com/rodrigoldes?igsh=MTZ6NmtmeGhzYmJ3eQ==" rel="noopener" target="_blank"><svg aria-hidden="true" class="brand-svg" viewbox="0 0 16 16">
+</svg><span>@apolinarioch</span></a></article><article class="teacher-card reveal"><a aria-label="Abrir Instagram de Rodrigo Deslandes" class="avatar teacher-photo" href="https://www.instagram.com/rodrigoldes?igsh=MTZ6NmtmeGhzYmJ3eQ==" rel="noopener" target="_blank"><img alt="Foto de Rodrigo Deslandes" class="" loading="lazy" src="assets/prof-rodrigo.png"/></a><h3>Rodrigo Deslandes</h3><p>Professor e sócio</p><a class="teacher-instagram" href="https://www.instagram.com/rodrigoldes?igsh=MTZ6NmtmeGhzYmJ3eQ==" rel="noopener" target="_blank"><svg aria-hidden="true" class="brand-svg" viewbox="0 0 16 16">
 <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.918 3.918 0 0 0-.923-1.417A3.916 3.916 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.318.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.599-.92c-.11-.281-.24-.704-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.23c.036-.78.166-1.205.276-1.486.145-.374.319-.64.599-.92.28-.281.546-.454.92-.599.281-.11.704-.24 1.485-.275.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zM8 3.892a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" fill="currentColor"></path>
 </svg><span>@rodrigoldes</span></a></article></div>
 </div>
@@ -635,6 +771,31 @@
 </footer>
 <a aria-label="Fale com a Bliss pelo WhatsApp" class="whatsapp-float" href="https://wa.me/5531975847108?text=Ol%C3%A1%21%20Gostaria%20de%20conhecer%20a%20Bliss." rel="noopener" target="_blank"><svg aria-hidden="true" class="brand-svg" viewbox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.068 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.003c4.368 0 7.926-3.558 7.926-7.927a7.898 7.898 0 0 0-2.322-5.61zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.25a6.568 6.568 0 0 1-1.007-3.502c0-3.642 2.96-6.602 6.602-6.602 1.762 0 3.416.687 4.66 1.933a6.56 6.56 0 0 1 1.933 4.66c-.002 3.642-2.962 6.604-6.608 6.604zm3.615-4.934c-.198-.099-1.174-.58-1.357-.646-.182-.066-.315-.099-.447.099-.132.198-.513.646-.629.779-.116.132-.232.148-.43.05-.198-.1-.836-.308-1.592-.984-.588-.525-.985-1.173-1.1-1.371-.116-.198-.012-.305.087-.404.089-.088.198-.232.297-.348.1-.116.133-.198.199-.33.066-.132.033-.248-.017-.347-.05-.099-.447-1.077-.613-1.476-.16-.389-.323-.336-.447-.342l-.38-.007a.729.729 0 0 0-.529.248c-.182.198-.695.679-.695 1.654s.712 1.919.811 2.051c.099.132 1.4 2.137 3.392 2.995.474.204.844.326 1.132.417.476.151.91.13 1.253.079.382-.057 1.174-.48 1.34-.943.165-.463.165-.86.116-.943-.05-.082-.182-.132-.38-.231z" fill="currentColor"></path></svg></a>
 <script>
+async function setStageShowCovers(){
+  const exts=['jpg','jpeg','png','webp','JPG','JPEG','PNG','WEBP'];
+  const buttons=[...document.querySelectorAll('.stage-show-button[data-cover-base]')];
+  for(const btn of buttons){
+    const base=btn.dataset.coverBase;
+    for(const ext of exts){
+      const src=`${base}.${ext}`;
+      try{
+        const ok=await new Promise(resolve=>{
+          const img=new Image();
+          img.onload=()=>resolve(true);
+          img.onerror=()=>resolve(false);
+          img.src=src;
+        });
+        if(ok){
+          btn.style.setProperty('--stage-cover',`url("${src}")`);
+          btn.dataset.hasCover='true';
+          break;
+        }
+      }catch(e){}
+    }
+  }
+}
+
+
     const menuToggle=document.getElementById('menuToggle');
     const navLinks=document.getElementById('navLinks');
     menuToggle.addEventListener('click',()=>{const open=navLinks.classList.toggle('open');menuToggle.setAttribute('aria-expanded',open);menuToggle.textContent=open?'×':'☰'});
@@ -642,6 +803,8 @@
     document.getElementById('year').textContent=new Date().getFullYear();
     const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.11});
     document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-  </script>
+  
+setStageShowCovers();
+</script>
 </body>
 </html>
