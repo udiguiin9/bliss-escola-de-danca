@@ -149,17 +149,61 @@ function loadPhoto(url){
 }
 const photoSources=[];
 let currentPhotoIndex=0;
+const photoExtensions=['JPG','jpg','JPEG','jpeg','PNG','png','WEBP','webp'];
+
+async function detectPhotoPattern(){
+  const candidates=[];
+
+  for(const ext of photoExtensions){
+    candidates.push({
+      firstFile:'foto (1).'+ext,
+      fileName:n=>'foto ('+n+').'+ext
+    });
+  }
+
+  for(const ext of photoExtensions){
+    candidates.push({
+      firstFile:'foto-01.'+ext,
+      fileName:n=>'foto-'+String(n).padStart(2,'0')+'.'+ext
+    });
+  }
+
+  for(const candidate of candidates){
+    const firstImage=await loadPhoto(mediaBase+candidate.firstFile);
+    if(firstImage){
+      return {
+        firstImage,
+        fileName:candidate.fileName
+      };
+    }
+  }
+
+  return null;
+}
+
 async function buildPhotos(){
   const grid=document.getElementById('photoGrid');
+  const pattern=await detectPhotoPattern();
+
+  if(!pattern){
+    document.getElementById('photoSection').style.display='none';
+    return;
+  }
+
   for(let n=1;n<=100;n++){
-    const fileName='foto ('+n+').JPG';
-    const img=await loadPhoto(mediaBase+fileName);
+    const img=n===1
+      ? pattern.firstImage
+      : await loadPhoto(mediaBase+pattern.fileName(n));
+
     if(!img)break;
+
     img.alt='Foto '+n+' do espetáculo';
     img.decoding='async';
     img.loading='lazy';
+
     const photoIndex=photoSources.length;
     photoSources.push(img.src);
+
     const b=document.createElement('button');
     b.className='photo';
     b.type='button';
@@ -168,8 +212,12 @@ async function buildPhotos(){
     b.addEventListener('click',()=>openLightbox(photoIndex));
     grid.appendChild(b);
   }
-  if(!photoSources.length)document.getElementById('photoSection').style.display='none';
+
+  if(!photoSources.length){
+    document.getElementById('photoSection').style.display='none';
+  }
 }
+
 async function exists(url){try{const r=await fetch(url,{method:'HEAD',cache:'no-store'});return r.ok}catch(e){return false}}
 async function buildVideos(){const grid=document.getElementById('videoGrid');let count=0;for(let n=1;n<=5;n++){const num=String(n).padStart(2,'0');let found=null;for(const ext of videoExts){const url=mediaBase+'video-'+num+'.'+ext;if(await exists(url)){found=url;break}}if(!found)continue;const wrap=document.createElement('div');wrap.className='video-card';const v=document.createElement('video');v.controls=true;v.preload='metadata';v.src=found;wrap.appendChild(v);grid.appendChild(wrap);count++}if(!count)document.getElementById('videoSection').style.display='none'}
 const cover=document.querySelector('[data-cover]');loadImage(cover.dataset.cover).then(img=>{if(img){img.alt='Capa do espetáculo Cine Bliss';cover.appendChild(img)}});
