@@ -638,6 +638,415 @@
     font-size:.82rem;
   }
 }
+
+
+/* Termômetro de felicidade Bliss — V17 */
+.bliss-meter{
+  background:#fff;
+  padding-top:30px;
+  padding-bottom:36px;
+}
+.meter-demo{
+  max-width:1120px;
+  margin:0 auto;
+}
+.meter-panel{
+  display:grid;
+  grid-template-columns:1.02fr .98fr;
+  gap:38px;
+  align-items:center;
+  padding:34px;
+  border-radius:36px;
+  background:linear-gradient(180deg,#ffffff 0%,#fbfbfe 100%);
+  border:1px solid rgba(40,39,45,.08);
+  box-shadow:0 26px 64px rgba(34,24,54,.08);
+}
+.meter-art{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:26px;
+  padding:8px 0;
+}
+.meter-visual{
+  position:relative;
+  display:flex;
+  align-items:flex-end;
+  gap:12px;
+}
+.meter-scale{
+  height:350px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  align-items:flex-end;
+  padding:8px 0 38px;
+  color:#8d8691;
+  font-size:.88rem;
+  font-weight:800;
+}
+.meter-shell{
+  position:relative;
+  width:110px;
+  height:350px;
+  border-radius:999px;
+  background:#f3f3f7;
+  border:4px solid #dadce3;
+  overflow:hidden;
+  box-shadow:inset 0 10px 16px rgba(255,255,255,.95), inset 0 -12px 20px rgba(0,0,0,.05);
+}
+.meter-logo-mark{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  opacity:.14;
+  pointer-events:none;
+}
+.meter-logo-mark img{
+  width:72px;
+  height:72px;
+  object-fit:contain;
+}
+.meter-fill{
+  position:absolute;
+  left:0; right:0; bottom:0;
+  height:0%;
+  transition:height .12s linear;
+  overflow:hidden;
+}
+.meter-fill-gradient{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,#6C3EB8 0%,#F05A7E 35%,#F5C400 68%,#16B6C9 100%);
+}
+.meter-glow{
+  position:absolute;
+  inset:auto 14px 12px;
+  height:18px;
+  border-radius:999px;
+  background:rgba(255,255,255,.46);
+  filter:blur(6px);
+  pointer-events:none;
+}
+.meter-bulb{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:-26px;
+  width:148px;
+  height:148px;
+  border-radius:50%;
+  background:#f1f2f5;
+  border:5px solid #dadce3;
+  box-shadow:inset 0 10px 16px rgba(255,255,255,.95), inset 0 -10px 18px rgba(0,0,0,.05);
+}
+.meter-bulb::before{
+  content:"";
+  position:absolute;
+  inset:20px;
+  border-radius:50%;
+  background:linear-gradient(180deg,#16B6C9 0%,#F5C400 40%,#F05A7E 72%,#6C3EB8 100%);
+  opacity:.22;
+  transition:opacity .18s ease, transform .18s ease;
+}
+.meter-bulb.is-active::before{
+  opacity:.9;
+  transform:scale(1.05);
+}
+.meter-shell.is-full{
+  animation:meterShellShake .28s ease 2;
+}
+.meter-percent{
+  min-width:130px;
+  text-align:left;
+  font-size:clamp(3rem,7vw,5.4rem);
+  line-height:1;
+  letter-spacing:-.06em;
+  font-weight:900;
+  color:var(--ink);
+  transition:color .18s ease, transform .18s ease;
+}
+.meter-percent.is-active{
+  color:var(--purple);
+  transform:scale(1.05);
+}
+.meter-copy h3{
+  font-size:clamp(2rem,4.5vw,3.1rem);
+  line-height:1.02;
+  margin-bottom:14px;
+}
+.meter-copy p{
+  color:var(--muted);
+  font-size:1.08rem;
+  line-height:1.7;
+}
+.meter-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:14px;
+  padding:8px 14px;
+  border-radius:999px;
+  background:rgba(108,62,184,.08);
+  color:var(--purple);
+  font-weight:900;
+  letter-spacing:.02em;
+}
+.meter-actions{
+  display:flex;
+  align-items:flex-end;
+  gap:18px;
+  margin-top:28px;
+  flex-wrap:wrap;
+}
+.meter-button{
+  width:230px;
+  height:146px;
+  position:relative;
+  border:0;
+  background:transparent;
+  cursor:pointer;
+  padding:0;
+  appearance:none;
+  -webkit-appearance:none;
+  transition:transform .06s ease;
+  touch-action:none;
+}
+.meter-button-base,
+.meter-button-ring,
+.meter-button-top{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  display:block;
+  pointer-events:none;
+}
+.meter-button-base{
+  bottom:8px;
+  width:176px;
+  height:48px;
+  border-radius:999px;
+  background:linear-gradient(180deg,#d5d8de 0%,#939aa3 48%,#6e767e 100%);
+  box-shadow:0 18px 28px rgba(24,24,30,.16);
+}
+.meter-button-ring{
+  bottom:20px;
+  width:190px;
+  height:58px;
+  border-radius:999px;
+  background:linear-gradient(180deg,#f8f8fb 0%,#c6c9cf 48%,#8c9096 100%);
+  box-shadow:inset 0 4px 8px rgba(255,255,255,.75), inset 0 -8px 12px rgba(0,0,0,.12);
+}
+.meter-button-top{
+  bottom:31px;
+  width:144px;
+  height:84px;
+  border-radius:999px;
+  background:radial-gradient(circle at 50% 18%,#ff8b84 0%,#ff5c56 26%,#f03d34 58%,#cb0d08 82%,#980400 100%);
+  box-shadow:inset 0 5px 10px rgba(255,255,255,.42), 0 18px 28px rgba(187,14,8,.24);
+  transition:transform .11s ease, box-shadow .11s ease, filter .11s ease;
+}
+.meter-button:hover .meter-button-top{
+  filter:saturate(1.05) brightness(1.02);
+}
+.meter-button.is-pressed .meter-button-top{
+  transform:translateX(-50%) translateY(11px) scale(.98);
+  box-shadow:inset 0 2px 7px rgba(255,255,255,.35), 0 8px 14px rgba(187,14,8,.18);
+}
+.meter-button.is-pressed .meter-button-ring{
+  transform:translateX(-50%) translateY(6px);
+}
+.meter-button.is-pressed .meter-button-base{
+  transform:translateX(-50%) translateY(3px);
+}
+.meter-reset{
+  min-height:48px;
+  padding:0 18px;
+  border-radius:999px;
+  border:1px solid rgba(40,39,45,.12);
+  background:#fff;
+  color:var(--ink);
+  font-weight:800;
+  cursor:pointer;
+  box-shadow:0 10px 20px rgba(34,24,54,.05);
+}
+.meter-reset:hover{
+  border-color:rgba(108,62,184,.35);
+  color:var(--purple);
+}
+.meter-tip{
+  display:block;
+  margin-top:18px;
+  color:#8b8591;
+}
+@keyframes meterShellShake{
+  0%{transform:translateX(0)}
+  25%{transform:translateX(-3px)}
+  50%{transform:translateX(4px)}
+  75%{transform:translateX(-2px)}
+  100%{transform:translateX(0)}
+}
+@media(max-width:920px){
+  .meter-panel{
+    grid-template-columns:1fr;
+    gap:22px;
+    padding:28px 22px;
+  }
+  .meter-copy{
+    text-align:center;
+  }
+  .meter-actions{
+    justify-content:center;
+  }
+}
+@media(max-width:620px){
+  .meter-art{
+    flex-direction:column;
+    gap:18px;
+  }
+  .meter-scale{
+    display:none;
+  }
+  .meter-shell{
+    width:96px;
+    height:300px;
+  }
+  .meter-bulb{
+    width:132px;
+    height:132px;
+    bottom:-20px;
+  }
+  .meter-percent{
+    text-align:center;
+    min-width:0;
+  }
+  .meter-button{
+    width:214px;
+    height:138px;
+  }
+  .meter-button-base{
+    width:164px;
+    height:46px;
+  }
+  .meter-button-ring{
+    width:178px;
+    height:56px;
+  }
+  .meter-button-top{
+    width:134px;
+    height:80px;
+  }
+}
+
+
+/* Medidor simplificado sem esfera inferior — V18 */
+.meter-visual{
+  align-items:center;
+}
+.meter-shell{
+  height:370px;
+  border-radius:42px;
+  overflow:hidden;
+}
+.meter-shell::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:14px;
+  width:62px;
+  height:10px;
+  transform:translateX(-50%);
+  border-radius:999px;
+  background:rgba(255,255,255,.48);
+  filter:blur(3px);
+  pointer-events:none;
+}
+.meter-scale{
+  height:370px;
+  padding-bottom:0;
+}
+.meter-percent{
+  align-self:center;
+}
+.meter-bulb{
+  display:none!important;
+}
+.meter-actions{
+  align-items:center;
+}
+.meter-reset{
+  display:none!important;
+}
+@media(max-width:620px){
+  .meter-shell{
+    height:320px;
+  }
+}
+
+
+/* Indicação de playlist Spotify nos cards de ritmos — V19 */
+.rhythm-spotify{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin:12px 0 0;
+  padding:7px 11px;
+  border-radius:999px;
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(40,39,45,.08);
+  color:#1DB954;
+  font-size:.82rem;
+  font-weight:900;
+  letter-spacing:.01em;
+  position:relative;
+  z-index:2;
+  box-shadow:0 8px 18px rgba(26,25,33,.06);
+}
+.rhythm-spotify span{
+  color:var(--ink);
+  font-weight:800;
+}
+.spotify-icon{
+  width:18px;
+  height:18px;
+  flex:0 0 18px;
+  display:block;
+  color:#1DB954;
+}
+.rhythm-card:hover .rhythm-spotify{
+  transform:translateY(-1px);
+  box-shadow:0 12px 22px rgba(26,25,33,.08);
+}
+@media(max-width:600px){
+  .rhythm-spotify{
+    font-size:.78rem;
+    padding:6px 10px;
+  }
+  .spotify-icon{
+    width:16px;
+    height:16px;
+    flex-basis:16px;
+  }
+}
+
+
+/* Ajustes de alinhamento do Spotify e continuidade do medidor — V20 */
+.rhythm-card{
+  display:flex;
+  flex-direction:column;
+}
+.rhythm-card > p{
+  margin-bottom:0;
+}
+.rhythm-spotify{
+  margin:16px 0 14px;
+  align-self:flex-start;
+  line-height:1;
+}
+.rhythm-card > a{
+  margin-top:auto;
+}
 </style>
 </head>
 <body>
@@ -688,6 +1097,55 @@
 </div>
 </div>
 </section>
+<section class="section bliss-meter" id="medidor-felicidade">
+<div class="container">
+<div class="section-head reveal">
+<div>
+<div class="eyebrow" style="color:var(--purple)">Interaja com a Bliss</div>
+<h2>O quanto a dança te faz feliz?</h2>
+</div>
+<p class="lead">Pressione e segure o botão para encher o medidor. Solte quando ele representar o que você sente.</p>
+</div>
+<div class="meter-demo reveal">
+<div class="meter-panel">
+<div class="meter-art">
+<div class="meter-visual" id="meterVisual">
+<div class="meter-scale">
+<span>100%</span>
+<span>75%</span>
+<span>50%</span>
+<span>25%</span>
+<span>0%</span>
+</div>
+<div class="meter-shell">
+<div aria-hidden="true" class="meter-logo-mark">
+<img alt="" src="assets/marca-dagua-bliss.png"/>
+</div>
+<div class="meter-fill" id="meterFill">
+<div class="meter-fill-gradient"></div>
+</div>
+<div class="meter-glow"></div>
+</div>
+</div>
+<div class="meter-percent" id="meterPercent">0%</div>
+</div>
+<div class="meter-copy">
+<div class="meter-badge" id="meterBadge">Medidor de felicidade</div>
+<h3 id="meterHeadline">Começando a descobrir a dança</h3>
+<p id="meterText">Segure o botão vermelho abaixo para aumentar a intensidade e descobrir o quanto a dança te faz feliz.</p>
+<div class="meter-actions">
+<button aria-label="Pressione e segure para encher o medidor" class="meter-button" id="meterButton" type="button">
+<span aria-hidden="true" class="meter-button-base"></span>
+<span aria-hidden="true" class="meter-button-ring"></span>
+<span aria-hidden="true" class="meter-button-top"></span>
+</button>
+</div>
+<small class="meter-tip">Pressione e segure para medir. Ao pressionar novamente, uma nova medição começa do zero.</small>
+</div>
+</div>
+</div>
+</div>
+</section>
 <section class="section rhythms" id="ritmos">
 <div class="container">
 <div class="section-head reveal">
@@ -696,14 +1154,94 @@
 <p class="lead">Uma formação completa em dança de salão, desenvolvendo técnica, musicalidade, condução, confiança e liberdade para dançar.</p>
 </div>
 <div class="rhythm-grid">
-<a class="rhythm-card reveal" href="ritmos/forro.html"><img alt="" aria-hidden="true" class="rhythm-watermark" src="assets/marca-dagua-bliss.png"/><h3>Forró</h3><p>Energia, proximidade e tradição brasileira.</p><span class="rhythm-more">Conhecer o ritmo →</span></a>
-<a class="rhythm-card reveal" href="ritmos/bolero.html"><img alt="" aria-hidden="true" class="rhythm-watermark" src="assets/marca-dagua-bliss.png"/><h3>Bolero</h3><p>Conexão, suavidade e romantismo.</p><span class="rhythm-more">Conhecer o ritmo →</span></a>
-<a class="rhythm-card reveal" href="ritmos/samba.html"><img alt="" aria-hidden="true" class="rhythm-watermark" src="assets/marca-dagua-bliss.png"/><h3>Samba</h3><p>Ginga, elegância e muita brasilidade.</p><span class="rhythm-more">Conhecer o ritmo →</span></a>
-<a class="rhythm-card reveal" href="ritmos/salsa.html"><img alt="" aria-hidden="true" class="rhythm-watermark" src="assets/marca-dagua-bliss.png"/><h3>Salsa</h3><p>Ritmo vibrante, presença e expressão.</p><span class="rhythm-more">Conhecer o ritmo →</span></a>
-<a class="rhythm-card reveal" href="ritmos/tango.html"><img alt="" aria-hidden="true" class="rhythm-watermark" src="assets/marca-dagua-bliss.png"/><h3>Tango</h3><p>Intensidade, técnica e elegância.</p><span class="rhythm-more">Conhecer o ritmo →</span></a>
-<a class="rhythm-card reveal" href="ritmos/soltinho.html"><img alt="" aria-hidden="true" class="rhythm-watermark" src="assets/marca-dagua-bliss.png"/><h3>Soltinho</h3><p>Leveza e diversão ao som de grandes hits.</p><span class="rhythm-more">Conhecer o ritmo →</span></a>
-<a class="rhythm-card reveal" href="ritmos/bachata.html"><img alt="" aria-hidden="true" class="rhythm-watermark" src="assets/marca-dagua-bliss.png"/><h3>Bachata</h3><p>Musicalidade, fluidez e conexão.</p><span class="rhythm-more">Conhecer o ritmo →</span></a>
-<a class="rhythm-card reveal" href="ritmos/kizomba.html"><img alt="" aria-hidden="true" class="rhythm-watermark" src="assets/marca-dagua-bliss.png"/><h3>Kizomba</h3><p>Cadência, sensibilidade e presença.</p><span class="rhythm-more">Conhecer o ritmo →</span></a>
+<a class="rhythm-card reveal" href="ritmos/forro.html"><img alt="" aria-hidden="true" class="rhythm-watermark" src="assets/marca-dagua-bliss.png"/><h3>Forró</h3>
+
+<p>Energia, proximidade e tradição brasileira.</p><span class="rhythm-more">Conhecer o ritmo →</span><div aria-label="Este ritmo possui playlists no Spotify" class="rhythm-spotify">
+<svg aria-hidden="true" class="spotify-icon" viewbox="0 0 24 24">
+<circle cx="12" cy="12" fill="currentColor" r="12"></circle>
+<path d="M17.54 16.42a.75.75 0 0 1-1.03.24c-2.82-1.72-6.37-2.11-10.55-1.16a.75.75 0 1 1-.33-1.46c4.58-1.04 8.51-.59 11.66 1.33.35.21.45.67.25 1.05Z" fill="#fff"></path>
+<path d="M18.99 13.2a.94.94 0 0 1-1.29.31c-3.23-1.98-8.15-2.55-11.97-1.37a.94.94 0 0 1-.55-1.8c4.38-1.34 9.81-.71 13.5 1.55.44.27.58.85.31 1.31Z" fill="#fff"></path>
+<path d="M19.12 9.82c-3.87-2.3-10.25-2.51-13.95-1.39a1.13 1.13 0 1 1-.66-2.17c4.24-1.29 11.29-1.04 15.77 1.62a1.13 1.13 0 0 1-1.16 1.94Z" fill="#fff"></path>
+</svg>
+<span>Playlist no Spotify</span>
+</div></a>
+<a class="rhythm-card reveal" href="ritmos/bolero.html"><img alt="" aria-hidden="true" class="rhythm-watermark" src="assets/marca-dagua-bliss.png"/><h3>Bolero</h3>
+
+<p>Conexão, suavidade e romantismo.</p><span class="rhythm-more">Conhecer o ritmo →</span><div aria-label="Este ritmo possui playlists no Spotify" class="rhythm-spotify">
+<svg aria-hidden="true" class="spotify-icon" viewbox="0 0 24 24">
+<circle cx="12" cy="12" fill="currentColor" r="12"></circle>
+<path d="M17.54 16.42a.75.75 0 0 1-1.03.24c-2.82-1.72-6.37-2.11-10.55-1.16a.75.75 0 1 1-.33-1.46c4.58-1.04 8.51-.59 11.66 1.33.35.21.45.67.25 1.05Z" fill="#fff"></path>
+<path d="M18.99 13.2a.94.94 0 0 1-1.29.31c-3.23-1.98-8.15-2.55-11.97-1.37a.94.94 0 0 1-.55-1.8c4.38-1.34 9.81-.71 13.5 1.55.44.27.58.85.31 1.31Z" fill="#fff"></path>
+<path d="M19.12 9.82c-3.87-2.3-10.25-2.51-13.95-1.39a1.13 1.13 0 1 1-.66-2.17c4.24-1.29 11.29-1.04 15.77 1.62a1.13 1.13 0 0 1-1.16 1.94Z" fill="#fff"></path>
+</svg>
+<span>Playlist no Spotify</span>
+</div></a>
+<a class="rhythm-card reveal" href="ritmos/samba.html"><img alt="" aria-hidden="true" class="rhythm-watermark" src="assets/marca-dagua-bliss.png"/><h3>Samba</h3>
+
+<p>Ginga, elegância e muita brasilidade.</p><span class="rhythm-more">Conhecer o ritmo →</span><div aria-label="Este ritmo possui playlists no Spotify" class="rhythm-spotify">
+<svg aria-hidden="true" class="spotify-icon" viewbox="0 0 24 24">
+<circle cx="12" cy="12" fill="currentColor" r="12"></circle>
+<path d="M17.54 16.42a.75.75 0 0 1-1.03.24c-2.82-1.72-6.37-2.11-10.55-1.16a.75.75 0 1 1-.33-1.46c4.58-1.04 8.51-.59 11.66 1.33.35.21.45.67.25 1.05Z" fill="#fff"></path>
+<path d="M18.99 13.2a.94.94 0 0 1-1.29.31c-3.23-1.98-8.15-2.55-11.97-1.37a.94.94 0 0 1-.55-1.8c4.38-1.34 9.81-.71 13.5 1.55.44.27.58.85.31 1.31Z" fill="#fff"></path>
+<path d="M19.12 9.82c-3.87-2.3-10.25-2.51-13.95-1.39a1.13 1.13 0 1 1-.66-2.17c4.24-1.29 11.29-1.04 15.77 1.62a1.13 1.13 0 0 1-1.16 1.94Z" fill="#fff"></path>
+</svg>
+<span>Playlist no Spotify</span>
+</div></a>
+<a class="rhythm-card reveal" href="ritmos/salsa.html"><img alt="" aria-hidden="true" class="rhythm-watermark" src="assets/marca-dagua-bliss.png"/><h3>Salsa</h3>
+
+<p>Ritmo vibrante, presença e expressão.</p><span class="rhythm-more">Conhecer o ritmo →</span><div aria-label="Este ritmo possui playlists no Spotify" class="rhythm-spotify">
+<svg aria-hidden="true" class="spotify-icon" viewbox="0 0 24 24">
+<circle cx="12" cy="12" fill="currentColor" r="12"></circle>
+<path d="M17.54 16.42a.75.75 0 0 1-1.03.24c-2.82-1.72-6.37-2.11-10.55-1.16a.75.75 0 1 1-.33-1.46c4.58-1.04 8.51-.59 11.66 1.33.35.21.45.67.25 1.05Z" fill="#fff"></path>
+<path d="M18.99 13.2a.94.94 0 0 1-1.29.31c-3.23-1.98-8.15-2.55-11.97-1.37a.94.94 0 0 1-.55-1.8c4.38-1.34 9.81-.71 13.5 1.55.44.27.58.85.31 1.31Z" fill="#fff"></path>
+<path d="M19.12 9.82c-3.87-2.3-10.25-2.51-13.95-1.39a1.13 1.13 0 1 1-.66-2.17c4.24-1.29 11.29-1.04 15.77 1.62a1.13 1.13 0 0 1-1.16 1.94Z" fill="#fff"></path>
+</svg>
+<span>Playlist no Spotify</span>
+</div></a>
+<a class="rhythm-card reveal" href="ritmos/tango.html"><img alt="" aria-hidden="true" class="rhythm-watermark" src="assets/marca-dagua-bliss.png"/><h3>Tango</h3>
+
+<p>Intensidade, técnica e elegância.</p><span class="rhythm-more">Conhecer o ritmo →</span><div aria-label="Este ritmo possui playlists no Spotify" class="rhythm-spotify">
+<svg aria-hidden="true" class="spotify-icon" viewbox="0 0 24 24">
+<circle cx="12" cy="12" fill="currentColor" r="12"></circle>
+<path d="M17.54 16.42a.75.75 0 0 1-1.03.24c-2.82-1.72-6.37-2.11-10.55-1.16a.75.75 0 1 1-.33-1.46c4.58-1.04 8.51-.59 11.66 1.33.35.21.45.67.25 1.05Z" fill="#fff"></path>
+<path d="M18.99 13.2a.94.94 0 0 1-1.29.31c-3.23-1.98-8.15-2.55-11.97-1.37a.94.94 0 0 1-.55-1.8c4.38-1.34 9.81-.71 13.5 1.55.44.27.58.85.31 1.31Z" fill="#fff"></path>
+<path d="M19.12 9.82c-3.87-2.3-10.25-2.51-13.95-1.39a1.13 1.13 0 1 1-.66-2.17c4.24-1.29 11.29-1.04 15.77 1.62a1.13 1.13 0 0 1-1.16 1.94Z" fill="#fff"></path>
+</svg>
+<span>Playlist no Spotify</span>
+</div></a>
+<a class="rhythm-card reveal" href="ritmos/soltinho.html"><img alt="" aria-hidden="true" class="rhythm-watermark" src="assets/marca-dagua-bliss.png"/><h3>Soltinho</h3>
+
+<p>Leveza e diversão ao som de grandes hits.</p><span class="rhythm-more">Conhecer o ritmo →</span><div aria-label="Este ritmo possui playlists no Spotify" class="rhythm-spotify">
+<svg aria-hidden="true" class="spotify-icon" viewbox="0 0 24 24">
+<circle cx="12" cy="12" fill="currentColor" r="12"></circle>
+<path d="M17.54 16.42a.75.75 0 0 1-1.03.24c-2.82-1.72-6.37-2.11-10.55-1.16a.75.75 0 1 1-.33-1.46c4.58-1.04 8.51-.59 11.66 1.33.35.21.45.67.25 1.05Z" fill="#fff"></path>
+<path d="M18.99 13.2a.94.94 0 0 1-1.29.31c-3.23-1.98-8.15-2.55-11.97-1.37a.94.94 0 0 1-.55-1.8c4.38-1.34 9.81-.71 13.5 1.55.44.27.58.85.31 1.31Z" fill="#fff"></path>
+<path d="M19.12 9.82c-3.87-2.3-10.25-2.51-13.95-1.39a1.13 1.13 0 1 1-.66-2.17c4.24-1.29 11.29-1.04 15.77 1.62a1.13 1.13 0 0 1-1.16 1.94Z" fill="#fff"></path>
+</svg>
+<span>Playlist no Spotify</span>
+</div></a>
+<a class="rhythm-card reveal" href="ritmos/bachata.html"><img alt="" aria-hidden="true" class="rhythm-watermark" src="assets/marca-dagua-bliss.png"/><h3>Bachata</h3>
+
+<p>Musicalidade, fluidez e conexão.</p><span class="rhythm-more">Conhecer o ritmo →</span><div aria-label="Este ritmo possui playlists no Spotify" class="rhythm-spotify">
+<svg aria-hidden="true" class="spotify-icon" viewbox="0 0 24 24">
+<circle cx="12" cy="12" fill="currentColor" r="12"></circle>
+<path d="M17.54 16.42a.75.75 0 0 1-1.03.24c-2.82-1.72-6.37-2.11-10.55-1.16a.75.75 0 1 1-.33-1.46c4.58-1.04 8.51-.59 11.66 1.33.35.21.45.67.25 1.05Z" fill="#fff"></path>
+<path d="M18.99 13.2a.94.94 0 0 1-1.29.31c-3.23-1.98-8.15-2.55-11.97-1.37a.94.94 0 0 1-.55-1.8c4.38-1.34 9.81-.71 13.5 1.55.44.27.58.85.31 1.31Z" fill="#fff"></path>
+<path d="M19.12 9.82c-3.87-2.3-10.25-2.51-13.95-1.39a1.13 1.13 0 1 1-.66-2.17c4.24-1.29 11.29-1.04 15.77 1.62a1.13 1.13 0 0 1-1.16 1.94Z" fill="#fff"></path>
+</svg>
+<span>Playlist no Spotify</span>
+</div></a>
+<a class="rhythm-card reveal" href="ritmos/kizomba.html"><img alt="" aria-hidden="true" class="rhythm-watermark" src="assets/marca-dagua-bliss.png"/><h3>Kizomba</h3>
+
+<p>Cadência, sensibilidade e presença.</p><span class="rhythm-more">Conhecer o ritmo →</span><div aria-label="Este ritmo possui playlists no Spotify" class="rhythm-spotify">
+<svg aria-hidden="true" class="spotify-icon" viewbox="0 0 24 24">
+<circle cx="12" cy="12" fill="currentColor" r="12"></circle>
+<path d="M17.54 16.42a.75.75 0 0 1-1.03.24c-2.82-1.72-6.37-2.11-10.55-1.16a.75.75 0 1 1-.33-1.46c4.58-1.04 8.51-.59 11.66 1.33.35.21.45.67.25 1.05Z" fill="#fff"></path>
+<path d="M18.99 13.2a.94.94 0 0 1-1.29.31c-3.23-1.98-8.15-2.55-11.97-1.37a.94.94 0 0 1-.55-1.8c4.38-1.34 9.81-.71 13.5 1.55.44.27.58.85.31 1.31Z" fill="#fff"></path>
+<path d="M19.12 9.82c-3.87-2.3-10.25-2.51-13.95-1.39a1.13 1.13 0 1 1-.66-2.17c4.24-1.29 11.29-1.04 15.77 1.62a1.13 1.13 0 0 1-1.16 1.94Z" fill="#fff"></path>
+</svg>
+<span>Playlist no Spotify</span>
+</div></a>
 </div>
 </div>
 </section>
@@ -848,6 +1386,95 @@ async function setStageShowCovers(){
     document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
   
 setStageShowCovers();
+
+
+const meterFill=document.getElementById('meterFill');
+const meterPercent=document.getElementById('meterPercent');
+const meterButton=document.getElementById('meterButton');
+const meterHeadline=document.getElementById('meterHeadline');
+const meterText=document.getElementById('meterText');
+const meterBadge=document.getElementById('meterBadge');
+const meterShell=document.getElementById('meterVisual')?.querySelector('.meter-shell');
+
+let meterValue=0;
+let meterTimer=null;
+
+const meterStates=[
+  {max:20, title:'Começando a descobrir a dança', text:'A dança já começou a abrir espaço para mais leveza, movimento e novas possibilidades.', badge:'Primeiros passos'},
+  {max:40, title:'A dança deixa meus dias mais leves', text:'Quando a música começa, o dia muda de ritmo e a felicidade aparece com mais facilidade.', badge:'Leveza'},
+  {max:60, title:'A dança muda o meu dia', text:'A dança já influencia o seu humor, a sua energia e a forma como você vive cada encontro.', badge:'Bem-estar'},
+  {max:80, title:'A dança faz parte da minha felicidade', text:'Aqui a dança já ocupa um lugar importante na sua rotina e no que te faz bem.', badge:'Conexão'},
+  {max:99, title:'A dança transforma a minha vida', text:'A felicidade vem forte, com presença, entrega e vontade de dançar mais e mais.', badge:'Transformação'},
+  {max:100, title:'Minha felicidade transborda dançando!', text:'Chegou no máximo! Quando a dança transborda, o corpo inteiro responde com alegria.', badge:'Transbordou'}
+];
+
+function getMeterState(value){
+  return meterStates.find(state => value <= state.max) || meterStates[meterStates.length-1];
+}
+
+function renderMeter(){
+  if(!meterFill || !meterPercent || !meterHeadline || !meterText || !meterBadge) return;
+  meterFill.style.height = meterValue + '%';
+  meterPercent.textContent = meterValue + '%';
+  const state=getMeterState(meterValue);
+  meterHeadline.textContent=state.title;
+  meterText.textContent=state.text;
+  meterBadge.textContent=state.badge;
+
+  meterPercent.classList.remove('is-active');
+  void meterPercent.offsetWidth;
+  meterPercent.classList.add('is-active');
+  setTimeout(()=>meterPercent.classList.remove('is-active'), 260);
+  if(meterShell){
+    if(meterValue>=100){
+      meterShell.classList.remove('is-full');
+      void meterShell.offsetWidth;
+      meterShell.classList.add('is-full');
+      setTimeout(()=>meterShell.classList.remove('is-full'), 700);
+    }
+  }
+}
+
+function startMeterFill(){
+  if(!meterButton || meterTimer) return;
+  if(meterValue >= 100){
+    meterValue = 0;
+    renderMeter();
+  }
+  meterButton.classList.add('is-pressed');
+  meterTimer=setInterval(()=>{
+    meterValue = Math.min(100, meterValue + 2);
+    renderMeter();
+    if(meterValue >= 100){
+      stopMeterFill();
+    }
+  }, 60);
+}
+
+function stopMeterFill(){
+  if(meterButton) meterButton.classList.remove('is-pressed');
+  if(meterTimer){
+    clearInterval(meterTimer);
+    meterTimer=null;
+  }
+}
+
+
+if(meterButton){
+  meterButton.addEventListener('mousedown', startMeterFill);
+  meterButton.addEventListener('touchstart', (e)=>{e.preventDefault(); startMeterFill();}, {passive:false});
+  meterButton.addEventListener('pointerdown', (e)=>{ if(e.pointerType!=='mouse') startMeterFill(); });
+
+  ['mouseup','mouseleave','touchend','touchcancel','pointerup','pointercancel'].forEach(eventName=>{
+    meterButton.addEventListener(eventName, stopMeterFill);
+  });
+}
+document.addEventListener('mouseup', stopMeterFill);
+document.addEventListener('touchend', stopMeterFill);
+document.addEventListener('pointerup', stopMeterFill);
+
+
+renderMeter();
 </script>
 </body>
 </html>
